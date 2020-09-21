@@ -523,3 +523,8 @@ article {
 .footer li svg {
     color: #4E4E4E;
 }
+
+.footerLink__item:hover,
+.footer__wrap:hover {
+    cursor: pointer;
+}
