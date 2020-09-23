@@ -4,40 +4,42 @@
     <meta charset="UTF-8">
     <title>Calculator</title>
     <link rel="stylesheet" href="index.css">
+<!--    Я черпал вдохновение из дизайна калькулятора google -->
 </head>
 <body>
     <article class="container">
         <section class="display">
-            <div class="display__previous previous"></div>
+            <div class="display__previous previous">Ans = 0</div>
             <div class="display--current current"></div>
         </section>
         <section class="btn--container">
 
-            <button class="btn__item btn__item--action">x</button>
-            <button class="btn__item btn__item--action">x^</button>
-            <button class="btn__item btn__item--action">Ans</button>
-            <button class="btn__item btn__item--action">CE</button>
+            <button class="btn__item btn__item--action" value="sqrt">&radic;x</button>
+            <button class="btn__item btn__item--action" value="x^">x^</button>
+            <button class="btn__item btn__item--action" value="Ans">Ans</button>
+            <button class="btn__item btn__item--action" value="CE">CE</button>
 
-            <button class="btn__item btn__item--number">7</button>
-            <button class="btn__item btn__item--number">8</button>
-            <button class="btn__item btn__item--number">9</button>
-            <button class="btn__item btn__item--action">/</button>
+            <button class="btn__item btn__item--number" value="7">7</button>
+            <button class="btn__item btn__item--number" value="8">8</button>
+            <button class="btn__item btn__item--number" value="9">9</button>
+            <button class="btn__item btn__item--action" value="&divide;">&divide;</button>
 
-            <button class="btn__item btn__item--number">4</button>
-            <button class="btn__item btn__item--number">5</button>
-            <button class="btn__item btn__item--number">6</button>
-            <button class="btn__item btn__item--action">*</button>
+            <button class="btn__item btn__item--number" value="4">4</button>
+            <button class="btn__item btn__item--number" value="5">5</button>
+            <button class="btn__item btn__item--number" value="6">6</button>
+            <button class="btn__item btn__item--action" value="*">*</button>
 
-            <button class="btn__item btn__item--number">1</button>
-            <button class="btn__item btn__item--number">2</button>
-            <button class="btn__item btn__item--number">3</button>
-            <button class="btn__item btn__item--action">-</button>
+            <button class="btn__item btn__item--number" value="1">1</button>
+            <button class="btn__item btn__item--number" value="2">2</button>
+            <button class="btn__item btn__item--number" value="3">3</button>
+            <button class="btn__item btn__item--action" value="-">-</button>
 
-            <button class="btn__item btn__item--number">0</button>
-            <button class="btn__item btn__item--number">.</button>
-            <button class="btn__item btn__item--result">=</button>
-            <button class="btn__item btn__item--action">+</button>
+            <button class="btn__item btn__item--number" value="0">0</button>
+            <button class="btn__item btn__item--number" value=".">.</button>
+            <button class="btn__item btn__item--result" value="=">=</button>
+            <button class="btn__item btn__item--action" value="+">+</button>
         </section>
     </article>
+<script src="main.js"></script>
 </body>
 </html>
