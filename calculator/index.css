@@ -65,7 +65,20 @@ body {
     height: 34px;
     font-size: 30px;
     color: #222;
+}
 
+.animation {
+    animation: .5s action;
+}
+
+@keyframes action {
+    from {
+        line-height: 4;
+    }
+
+    to {
+        line-height: 1;
+    }
 }
 
 .btn--container {
