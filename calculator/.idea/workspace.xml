@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da087be2-39c0-41bb-b3f6-c2a101d5a508" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,8 +52,12 @@
       <option name="presentableId" value="Default" />
       <updated>1600969243115</updated>
       <workItem from="1600969244163" duration="8000" />
+      <workItem from="1601215885963" duration="15000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -66,11 +69,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1600969249996">
+    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1601215898341">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600969249996" />
+    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601215898341" />
   </component>
 </project>

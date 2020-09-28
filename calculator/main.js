@@ -1,11 +1,40 @@
 const buttons = document.querySelectorAll(".btn__item");
 const displayPrevious = document.querySelector(".display__previous");
 const displayCurrent = document.querySelector(".display--current");
+const deleteBtn = document.querySelector(".delete");
 
+let flag = 0;
 const getValue = addEventListener('click', (event) => {
     const { target: { value }} = event;
     const { target } = event;
     if (target.toString() === '[object HTMLButtonElement]') {
+        if (flag === 1) {
+            flag = 0;
+            if (value === 'AC') {
+                displayPrevious.innerHTML = `Ans = ${displayCurrent.innerHTML}`;
+                displayCurrent.innerHTML = '';
+                deleteBtn.value = 'CE'
+                return;
+            }
+            deleteBtn.innerHTML = 'CE';
+            displayPrevious.innerHTML = `Ans = ${displayCurrent.innerHTML}`
+            if (target.getAttribute('class').indexOf('number') === 21) {
+                displayCurrent.innerHTML = value;
+                return;
+            }
+            if (value === "A") {
+                displayCurrent.innerHTML += `*${displayPrevious.innerHTML.slice(6)}`;
+                return;
+            }
+        }
+        if (value === "A") {
+            if (!isNaN(+displayCurrent.innerHTML.slice(-1))) {
+                displayCurrent.innerHTML += `*${displayPrevious.innerHTML.slice(6)}`;
+                return;
+            }
+            displayCurrent.innerHTML += displayPrevious.innerHTML.slice(6);
+            return;
+        }
         if (value === "CE") {
             let dop = 1
             const lastIndex = displayCurrent.innerHTML[displayCurrent.innerHTML.length - 1];
@@ -17,9 +46,13 @@ const getValue = addEventListener('click', (event) => {
         }
         if (value === "=") {
             const str = displayCurrent.innerHTML;
+            displayPrevious.innerHTML = `${str} = `;
             displayCurrent.innerHTML = Calculator(str);
-            displayCurrent.classList.add('animation')
-            setTimeout(() => displayCurrent.classList.remove('animation'), 450)
+            displayCurrent.classList.add('animation');
+            setTimeout(() => displayCurrent.classList.remove('animation'), 450);
+            deleteBtn.innerHTML = "AC";
+            deleteBtn.value = "AC";
+            flag = 1;
             return;
         }
         displayCurrent.innerHTML += value;
@@ -54,8 +87,8 @@ const Calculator = str => {
         console.log('NaN')
         return;
     }
-    console.log(result)
-    console.log('------------------------------------------')
+    // console.log(result)
+    // console.log('------------------------------------------')
 
     const computation = (arr) => {
         let steakNum = [];
@@ -132,5 +165,5 @@ const Calculator = str => {
         }
         return steakNum[0]
     }
-    return computation(result)
+    return result.length === 1 ? result[0] : computation(result)
 }
