@@ -4,20 +4,29 @@ const displayCurrent = document.querySelector(".display--current");
 const deleteBtn = document.querySelector(".delete");
 
 let flag = 0;
+let error = 'false';
 const getValue = addEventListener('click', (event) => {
     const { target: { value }} = event;
     const { target } = event;
     if (target.toString() === '[object HTMLButtonElement]') {
         if (flag === 1) {
             flag = 0;
+            deleteBtn.innerHTML = 'CE'
+            deleteBtn.value = "CE";
+            if (error) {
+                displayPrevious.innerHTML = `Ans = 0`;
+                displayCurrent.innerHTML = '';
+                if (target.getAttribute('class').indexOf('number') === 21) {
+                    displayCurrent.innerHTML = value;
+                    return;
+                }
+                return;
+            }
             if (value === 'AC') {
                 displayPrevious.innerHTML = `Ans = ${displayCurrent.innerHTML}`;
                 displayCurrent.innerHTML = '';
-                deleteBtn.value = 'CE'
                 return;
             }
-            deleteBtn.innerHTML = 'CE';
-            displayPrevious.innerHTML = `Ans = ${displayCurrent.innerHTML}`
             if (target.getAttribute('class').indexOf('number') === 21) {
                 displayCurrent.innerHTML = value;
                 return;
@@ -47,12 +56,13 @@ const getValue = addEventListener('click', (event) => {
         if (value === "=") {
             const str = displayCurrent.innerHTML;
             displayPrevious.innerHTML = `${str} = `;
-            displayCurrent.innerHTML = Calculator(str);
+            displayCurrent.innerHTML = isNaN(Calculator(str)) === true ? "Отрицательное число" : Calculator(str);
             displayCurrent.classList.add('animation');
             setTimeout(() => displayCurrent.classList.remove('animation'), 450);
             deleteBtn.innerHTML = "AC";
             deleteBtn.value = "AC";
-            flag = 1;
+            flag = Calculator(str) === str ? 0 : 1;
+            error = displayCurrent.innerHTML === "Отрицательное число";
             return;
         }
         displayCurrent.innerHTML += value;
@@ -82,13 +92,10 @@ const Calculator = str => {
         return helpFunc(str)
     }
     const result = parser(str);
-    // Ошибка не завершено выражение
+
     if (typeof result[result.length - 1] !== 'number') {
-        console.log('NaN')
-        return;
+        return str;
     }
-    // console.log(result)
-    // console.log('------------------------------------------')
 
     const computation = (arr) => {
         let steakNum = [];
@@ -106,17 +113,23 @@ const Calculator = str => {
         const action = (op, a, b) => {
             switch (op) {
                 case '+' :
-                    return a + b
+                    return (a + b)/10000;
                 case '/' :
-                    return a / b
+                    if (b === 0) {
+                        return 0;
+                    }
+                    return (a / b);
                 case '*' :
-                    return a * b
+                    return (a * b)/10000/10000;
                 case '-' :
-                    return a - b
+                    return (a - b)/10000;
                 case '^' :
-                    return Math.pow(a, b)
+                    return Math.pow(a/10000, b/10000);
                 case 'sqrt' :
-                    return a * Math.sqrt(b)
+                    if (b < 0) {
+                        return NaN;
+                    }
+                    return a/10000 * Math.sqrt(b/10000);
                 default:
                     return ;
             }
@@ -142,7 +155,7 @@ const Calculator = str => {
                 a = numberArr.pop();
             }
 
-            numberArr.push(action(op, a, b))
+            numberArr.push(action(op, a * 10000, b * 10000))
 
             if (ops.length === 0) return nums;
 

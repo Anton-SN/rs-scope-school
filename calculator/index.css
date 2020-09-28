@@ -99,6 +99,7 @@ body {
     border: none;
     border-radius: 5px;
     outline: none;
+    font-size: 18px;
 }
 
 .btn__item:hover { cursor: pointer }
