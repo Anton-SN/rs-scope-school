@@ -1,5 +1,4 @@
 const buttons = document.querySelectorAll(".btn__item");
-const displayPrevious = document.querySelector(".display__previous");
 const displayCurrent = document.querySelector(".display--current");
 const deleteBtn = document.querySelector(".delete");
 
@@ -11,10 +10,7 @@ const getValue = addEventListener('click', (event) => {
     if (target.toString() === '[object HTMLButtonElement]') {
         if (flag === 1) {
             flag = 0;
-            deleteBtn.innerHTML = 'CE'
-            deleteBtn.value = "CE";
             if (error) {
-                displayPrevious.innerHTML = `Ans = 0`;
                 displayCurrent.innerHTML = '';
                 if (target.getAttribute('class').indexOf('number') === 21) {
                     displayCurrent.innerHTML = value;
@@ -22,114 +18,97 @@ const getValue = addEventListener('click', (event) => {
                 }
                 return;
             }
-            if (value === 'AC') {
-                displayPrevious.innerHTML = `Ans = ${displayCurrent.innerHTML}`;
-                displayCurrent.innerHTML = '';
-                return;
-            }
             if (target.getAttribute('class').indexOf('number') === 21) {
                 displayCurrent.innerHTML = value;
                 return;
             }
-            if (value === "A") {
-                displayCurrent.innerHTML += `*${displayPrevious.innerHTML.slice(6)}`;
-                return;
-            }
         }
-        if (value === "A") {
-            if (!isNaN(+displayCurrent.innerHTML.slice(-1))) {
-                displayCurrent.innerHTML += `*${displayPrevious.innerHTML.slice(6)}`;
-                return;
-            }
-            displayCurrent.innerHTML += displayPrevious.innerHTML.slice(6);
-            return;
+        switch (value) {
+            case 'C':
+                displayCurrent.innerHTML = '';
+                break;
+            case 'CE':
+                let dop = 1
+                const lastIndex = displayCurrent.innerHTML[displayCurrent.innerHTML.length - 1];
+                if (lastIndex === 't') {
+                    dop = 4;
+                }
+                displayCurrent.innerHTML = displayCurrent.innerHTML.slice(0, -dop)
+                break;
+            case '=':
+                const state = displayCurrent.innerHTML;
+                displayCurrent.innerHTML = Calculator(state);
+                // Animation
+                displayCurrent.classList.add('animation');
+                setTimeout(() => displayCurrent.classList.remove('animation'), 450);
+                // Change Button text
+                flag = Calculator(state) === state ? 0 : 1;
+                error = displayCurrent.innerHTML === "Отрицательное число";
+                break;
+            default :
+                displayCurrent.innerHTML += value;
+                break;
         }
-        if (value === "CE") {
-            let dop = 1
-            const lastIndex = displayCurrent.innerHTML[displayCurrent.innerHTML.length - 1];
-            if (lastIndex === 't') {
-                dop = 4;
-            }
-            displayCurrent.innerHTML = displayCurrent.innerHTML.slice(0, -dop)
-            return;
-        }
-        if (value === "=") {
-            const str = displayCurrent.innerHTML;
-            displayPrevious.innerHTML = `${str} = `;
-            displayCurrent.innerHTML = isNaN(Calculator(str)) === true ? "Отрицательное число" : Calculator(str);
-            displayCurrent.classList.add('animation');
-            setTimeout(() => displayCurrent.classList.remove('animation'), 450);
-            deleteBtn.innerHTML = "AC";
-            deleteBtn.value = "AC";
-            flag = Calculator(str) === str ? 0 : 1;
-            error = displayCurrent.innerHTML === "Отрицательное число";
-            return;
-        }
-        displayCurrent.innerHTML += value;
     }
 });
 
 buttons.forEach(elem => elem.getValue)
 
-const Calculator = str => {
-    const parser = str => {
-        let result = [];
-        const helpFunc = (str) => {
-            const number = Number.isNaN(parseFloat(str)) ? '' : parseFloat(str);
-            const deleteIndex = number.toString().length;
-            let action = str.slice(deleteIndex)[0] || '';
-            let dop = 1;
-
-            if (action === 's') {
-                dop = 4;
-                action = 'sqrt'
-            }
-
-            result = [...result, number, action]
-            if (str.length === 0) return result.filter(e => e !== '');
-            return helpFunc(str.slice(deleteIndex + dop))
-        }
-        return helpFunc(str)
+const parseStrToArray = str => {
+    let result = [];
+    const helpFunc = (str) => {
+        const number = Number.isNaN(parseFloat(str)) ? '' : parseFloat(str);
+        const deleteIndex = number.toString().length;
+        let action = str.slice(deleteIndex)[0] || '';
+        result = [...result, number, action]
+        if (str.length === 0) return result.filter(e => e !== '');
+        return helpFunc(str.slice(deleteIndex + 1))
     }
-    const result = parser(str);
+    return helpFunc(str)
+}
 
+const Calculator = str => {
+
+    const result = parseStrToArray(str);
+    // Last element action
     if (typeof result[result.length - 1] !== 'number') {
         return str;
     }
 
-    const computation = (arr) => {
+    const computation = arr => {
         let steakNum = [];
         let steakOperation = [];
+        const fraction = 100000000000;
 
         const operations = {
             '+': 1,
             '-': 1,
-            '*': 2,
+            '×': 2,
             '/': 2,
-            'sqrt': 2,
+            '√': 2,
             '^': 2,
         }
 
         const action = (op, a, b) => {
             switch (op) {
                 case '+' :
-                    return (a + b)/10000;
+                    return (a + b)/fraction;
                 case '/' :
                     if (b === 0) {
                         return 0;
                     }
                     return (a / b);
-                case '*' :
-                    return (a * b)/10000/10000;
+                case '×' :
+                    return (a * b)/fraction/fraction;
                 case '-' :
-                    return (a - b)/10000;
+                    return (a - b)/fraction;
                 case '^' :
-                    return Math.pow(a/10000, b/10000);
-                case 'sqrt' :
+                    return Math.pow(a/fraction, b/fraction);
+                case '√' :
                     if (b < 0) {
                         return NaN;
                     }
-                    return a/10000 * Math.sqrt(b/10000);
+                    return a/fraction * Math.sqrt(b/fraction);
                 default:
                     return ;
             }
@@ -142,7 +121,7 @@ const Calculator = str => {
             const op = operationArr.pop();
             let a, b;
 
-            if (op === 'sqrt') {
+            if (op === '√') {
                 if (nums.length === ops.length + 1) {
                     b = numberArr.pop();
                     a = 1;
@@ -155,7 +134,7 @@ const Calculator = str => {
                 a = numberArr.pop();
             }
 
-            numberArr.push(action(op, a * 10000, b * 10000))
+            numberArr.push(action(op, a * fraction, b * fraction))
 
             if (ops.length === 0) return nums;
 
@@ -178,5 +157,6 @@ const Calculator = str => {
         }
         return steakNum[0]
     }
+
     return result.length === 1 ? result[0] : computation(result)
 }
