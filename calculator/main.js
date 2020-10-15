@@ -2,7 +2,6 @@ const buttons = document.querySelectorAll(".btn__item");
 const displayCurrent = document.querySelector(".display--current");
 
 let flag = 0;
-let error = 'false';
 const getValue = addEventListener('click', (event) => {
     const { target: { value }} = event;
     const { target } = event;
