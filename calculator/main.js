@@ -29,11 +29,15 @@ const getValue = addEventListener('click', (event) => {
                 const state = displayCurrent.innerHTML;
                 let result = Calculator(state);
 
+                if (typeof result === "object" && result.type === 'infinity'){
+                    alert('На ноль делить нельзя!')
+                    return;
+                }
                 if (typeof result === "object" && result.type === 'negative'){
                     alert('Отрицательное число под корнем!')
                     return;
                 }
-                if (typeof result === "object" && result.type === 'nonCorrect'){
+                if ((typeof result === "object" && result.type === 'nonCorrect') || isNaN(result)){
                     alert('Некорректное выражение!')
                     return;
                 }
@@ -95,7 +99,7 @@ const Calculator = str => {
                     return (a + b)/fraction;
                 case '/' :
                     if (b === 0) {
-                        return 0;
+                        return 'infinity';
                     }
                     return (a / b);
                 case '×' :
@@ -137,6 +141,10 @@ const Calculator = str => {
                 return 'negative number'
             }
 
+            if (action(op, a * fraction, b * fraction) === 'infinity') {
+                return 'infinity'
+            }
+
             numberArr.push(action(op, a * fraction, b * fraction))
 
             if (ops.length === 0) return nums;
@@ -155,6 +163,9 @@ const Calculator = str => {
                 steakNum.push(e)
                 if ((prevOp && operations[prevOp] >= operations[nextOp]) || nextOp === 'final' ) {
                     let total = run(steakNum, steakOperation);
+                    if (total === 'infinity') {
+                        return { type: 'infinity', str }
+                    }
                     if (total === 'negative number') {
                         return { type: 'negative', str }
                     }
