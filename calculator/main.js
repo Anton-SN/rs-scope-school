@@ -1,6 +1,5 @@
 const buttons = document.querySelectorAll(".btn__item");
 const displayCurrent = document.querySelector(".display--current");
-const deleteBtn = document.querySelector(".delete");
 
 let flag = 0;
 let error = 'false';
@@ -10,14 +9,6 @@ const getValue = addEventListener('click', (event) => {
     if (target.toString() === '[object HTMLButtonElement]') {
         if (flag === 1) {
             flag = 0;
-            if (error) {
-                displayCurrent.innerHTML = '';
-                if (target.getAttribute('class').indexOf('number') === 21) {
-                    displayCurrent.innerHTML = value;
-                    return;
-                }
-                return;
-            }
             if (target.getAttribute('class').indexOf('number') === 21) {
                 displayCurrent.innerHTML = value;
                 return;
@@ -37,13 +28,23 @@ const getValue = addEventListener('click', (event) => {
                 break;
             case '=':
                 const state = displayCurrent.innerHTML;
-                displayCurrent.innerHTML = Calculator(state);
+                let result = Calculator(state);
+
+                if (typeof result === "object" && result.type === 'negative'){
+                    alert('Отрицательное число под корнем!')
+                    return;
+                }
+                if (typeof result === "object" && result.type === 'nonCorrect'){
+                    alert('Некорректное выражение!')
+                    return;
+                }
+
+                displayCurrent.innerHTML = result;
                 // Animation
                 displayCurrent.classList.add('animation');
                 setTimeout(() => displayCurrent.classList.remove('animation'), 450);
                 // Change Button text
-                flag = Calculator(state) === state ? 0 : 1;
-                error = displayCurrent.innerHTML === "Отрицательное число";
+                flag = result === state ? 0 : 1;
                 break;
             default :
                 displayCurrent.innerHTML += value;
@@ -72,13 +73,13 @@ const Calculator = str => {
     const result = parseStrToArray(str);
     // Last element action
     if (typeof result[result.length - 1] !== 'number') {
-        return str;
+        return { type: 'nonCorrect', str }
     }
 
     const computation = arr => {
         let steakNum = [];
         let steakOperation = [];
-        const fraction = 100000000000;
+        const fraction = 10000000000;
 
         const operations = {
             '+': 1,
@@ -106,7 +107,7 @@ const Calculator = str => {
                     return Math.pow(a/fraction, b/fraction);
                 case '√' :
                     if (b < 0) {
-                        return NaN;
+                        return 'negative number';
                     }
                     return a/fraction * Math.sqrt(b/fraction);
                 default:
@@ -133,6 +134,9 @@ const Calculator = str => {
                 b = numberArr.pop();
                 a = numberArr.pop();
             }
+            if (action(op, a * fraction, b * fraction) === 'negative number') {
+                return 'negative number'
+            }
 
             numberArr.push(action(op, a * fraction, b * fraction))
 
@@ -151,7 +155,11 @@ const Calculator = str => {
                 const prevOp = steakOperation[steakOperation.length - 1] || null
                 steakNum.push(e)
                 if ((prevOp && operations[prevOp] >= operations[nextOp]) || nextOp === 'final' ) {
-                    steakNum = run(steakNum, steakOperation)
+                    let total = run(steakNum, steakOperation);
+                    if (total === 'negative number') {
+                        return { type: 'negative', str }
+                    }
+                    steakNum = total;
                 }
             }
         }
