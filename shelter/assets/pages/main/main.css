@@ -1,6 +1,7 @@
 body {
     width: 1280px;
     font-family: Arial, serif;
+    font-weight: normal;
 }
 
 li { list-style: none }
@@ -72,6 +73,12 @@ h2, h3, h4, h5 {
 .p-L, .p-S {
     font-family: Arial, serif;
     font-weight: normal;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center
 }
 
 .main__header {
@@ -172,4 +179,27 @@ h2, h3, h4, h5 {
 
 .contentStart__button {
     width: 207px;
+}
+
+.main__about {
+    width: auto;
+    background: #ffffff;
+}
+
+.about {
+    width: 1200px;
+    height: 588px;
+    margin: 80px auto 100px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.about__description {
+    width: 430px;
+    margin-left: 120px;
+    margin-top: -20px;
+}
+
+.description__item {
+    margin-bottom: 25px;
 }
