@@ -273,3 +273,49 @@ h2, h3, h4, h5 {
 .pets__button {
     width: 261px;
 }
+
+.main__help {
+    width: auto;
+    background: #ffffff;
+}
+
+.help {
+    height: 611px;
+    width: 1200px;
+    box-sizing: border-box;
+    padding: 80px 0 100px 0;
+    margin: 0 auto;
+}
+
+.help__title { text-align: center }
+
+.help__types {
+    width: 1026px;
+    margin: 60px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.types__row {
+    display: flex;
+    margin-bottom: 55px;
+}
+
+.types__row:first-child {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.types__row:last-child {
+    justify-content: space-between;
+    width: 860px;
+}
+
+.itemHelp {
+    height: 113px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
