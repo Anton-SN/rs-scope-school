@@ -1,5 +1,6 @@
 body {
-    width: 1280px;
+    /*width: 1280px;*/
+    width: 768px;
     font-family: Arial, serif;
     font-weight: normal;
 }
@@ -294,35 +295,35 @@ h2, h3, h4, h5 {
 .help__title { text-align: center }
 
 .help__types {
-    width: 1026px;
+    width: 85.5%;
+    height: 281px;
     margin: 60px auto 0 auto;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.types__row {
-    display: flex;
-    margin-bottom: 55px;
-}
-
-.types__row:first-child {
-    justify-content: space-between;
-    width: 100%;
-}
-
-.types__row:last-child {
-    justify-content: space-between;
-    width: 860px;
+    flex-direction: row;
+    align-content: space-between;
+    flex-wrap: wrap;
 }
 
 .itemHelp {
     height: 113px;
+    margin-right: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
+
+.itemHelp__title { white-space: nowrap }
+
+.itemHelp:nth-child(5) {
+    margin-right: 0;
+    margin-left: -3px;
+}
+
+.itemHelp:nth-child(6) { margin-left: 83px }
+
+.itemHelp:last-child { margin: 0 }
+
 
 .main__donation {
     width: auto;
@@ -452,3 +453,158 @@ h2, h3, h4, h5 {
 }
 
 .footer__wrap { margin-top: -18px }
+
+/*------------------------------------------------*/
+/*--------------------Adaptive--------------------*/
+
+@media (max-width: 1279px) {
+    .main__header,
+    .about,
+    .donation,
+    .footer,
+    .help,
+    .pets { height: auto }
+
+    .header,
+    .startScreen,
+    .about,
+    .donation,
+    .footer,
+    .help,
+    .pets {
+        width: 92%;
+        margin: 0 auto;
+    }
+
+    .main__header { padding-top: 31px }
+
+    .header, .startScreen { margin: 0 auto; }
+
+    .startScreen {
+        margin-top: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .startScreen__contentStart {
+        margin-top: 0;
+        margin-bottom: 160px;
+    }
+
+    .contentStart__heading { margin-top: 60px }
+
+    .contentStart__buttonWrap { display: flex }
+
+    .contentStart__button {
+        margin: 0 auto;
+    }
+
+    .startScreen__wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .startScreen__wrapper img {
+        width: 82.4%;
+        margin-right: -8px;
+    }
+
+    .about {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding-bottom: 96px;
+        padding-top: 81px;
+    }
+
+    .about__description {
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 64px;
+    }
+
+    .pets__title {
+        margin-bottom: 59px;
+        margin-top: 1px;
+        margin-left: 2px;
+    }
+
+    .displayNone { display: none }
+
+    .card:nth-child(3) {
+        margin-left: 30px;
+        margin-right: 0;
+    }
+
+    .cards__arrow { margin-top: 1px }
+
+    .pets__button { margin-top: 60px }
+
+    .help__types {
+        height: 449px;
+        width: 605px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .itemHelp:last-child,
+    .itemHelp:nth-child(6),
+    .itemHelp:nth-child(5),
+    .itemHelp {
+        width: 170px;
+        margin: 0;
+    }
+
+    .itemHelp:nth-child(3n) {
+        margin-left: -13px;
+        margin-right: -13px;
+    }
+
+    .itemHelp:nth-child(3n + 1) {
+        margin-right: -13px;
+        margin-left: -11px;
+    }
+
+    .donation {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding-bottom: 96px;
+    }
+
+    .donation__content {
+        width: 51%;
+        margin-left: -20px;
+        margin-top: -1px;
+        margin-bottom: 48px;
+    }
+
+    .donation__wrap {
+        margin: 0;
+    }
+
+    .footer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        padding-top: 31px;
+    }
+
+    .footer__questions {
+        margin-left: 1px;
+        margin-right: 27px;
+    }
+
+    .footer__wrap {
+        margin-top: 22px;
+        height: 310px;
+    }
+}
+
+@media (max-width: 767px) {
+
+}
+
+
+/*@media (max-width: 319px) {*/
+
+/*}*/

@@ -22,6 +22,8 @@
     <list default="true" id="68f0f017-5cb4-4b90-9593-4a2fbb449611" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/pages/main/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pages/main/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/main/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pages/main/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/pets/pets.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pages/pets/pets.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../biocad" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -67,7 +69,9 @@
       <workItem from="1603091672432" duration="2953000" />
       <workItem from="1603122011257" duration="764000" />
       <workItem from="1603174849290" duration="457000" />
-      <workItem from="1603209422910" duration="3581000" />
+      <workItem from="1603209422910" duration="7215000" />
+      <workItem from="1603257311087" duration="599000" />
+      <workItem from="1603268254824" duration="10670000" />
     </task>
     <servers />
   </component>
@@ -87,9 +91,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1603175305264">
+    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1603216205071">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603175305264" />
+    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603216205071" />
   </component>
 </project>
