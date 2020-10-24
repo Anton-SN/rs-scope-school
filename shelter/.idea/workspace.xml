@@ -53,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../biocad" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../proj/frontend" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -71,7 +71,8 @@
       <workItem from="1603174849290" duration="457000" />
       <workItem from="1603209422910" duration="7215000" />
       <workItem from="1603257311087" duration="599000" />
-      <workItem from="1603268254824" duration="10670000" />
+      <workItem from="1603268254824" duration="19052000" />
+      <workItem from="1603353677173" duration="8066000" />
     </task>
     <servers />
   </component>
@@ -91,9 +92,9 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1603216205071">
+    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1603383190544">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603216205071" />
+    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603383190544" />
   </component>
 </project>
