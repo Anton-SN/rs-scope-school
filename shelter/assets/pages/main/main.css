@@ -159,6 +159,7 @@ h2, h3, h4, h5 {
     line-height: 160%;
     color: #CDCDCD;
 }
+
 .nav__item:hover {
     color: #FAFAFA;
     cursor: pointer;
@@ -167,6 +168,10 @@ h2, h3, h4, h5 {
 .nav__item:active {
     color: #FAFAFA;
     border-bottom: 3px solid #F1CDB3;
+}
+
+.nav__item a {
+    color: #CDCDCD;
 }
 
 .nav__item-active {

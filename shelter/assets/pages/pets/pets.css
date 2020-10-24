@@ -1,7 +1,7 @@
 body {
     /*width: 1280px;*/
     /*width: 768px;*/
-    width: 320px;
+    /*width: 320px;*/
     font-family: Arial, serif;
     font-weight: normal;
 }
@@ -154,6 +154,10 @@ h2, h3, h4, h5 {
     color: #545454;
 }
 
+.logo__title a {
+    color: #545454;
+}
+
 .logo__subTitle {
     margin-left: 4px;
     font-weight: normal;
@@ -190,6 +194,10 @@ h2, h3, h4, h5 {
 .nav__item-active {
     color: #545454;
     border-bottom: 3px solid #F1CDB3;
+}
+
+.nav__item a {
+    color: #545454;
 }
 
 .main__pets {
