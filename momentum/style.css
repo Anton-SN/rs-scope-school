@@ -35,7 +35,7 @@ body {
     overflow: hidden;
     max-width: 200px;
     white-space: nowrap;
-    margin-left: 20px;
+    padding-left: 20px;
     cursor: pointer;
     outline: none;
     text-align: center;
@@ -81,11 +81,36 @@ body {
 
 }
 
-@media (max-width: 500px) {
-    .wrap {
-        margin-top: 40px;
-    }
+.weather {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 0;
+}
 
+.temperature { grid-area: 1 / 2 / 2 / 3; }
+.weather-icon { grid-area: 1 / 1 / 4 / 2; }
+.weather-description { grid-area: 2 / 2 / 3 / 3; }
+.city { grid-area: 3 / 2 / 4 / 3; }
+
+.weather-icon {
+    font-size: 80px !important;
+}
+
+.city {
+    cursor: pointer;
+    outline: none;
+}
+
+.city:focus {
+    border-bottom: 1px solid;
+}
+
+@media (max-width: 500px) {
     .focusTitle { text-align: center }
 
     .focus {
