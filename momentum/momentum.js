@@ -12,6 +12,44 @@ const temperature = document.querySelector('.temperature');
 const weatherDescription = document.querySelector('.weather-description');
 const city = document.querySelector('.city');
 
+const next = document.querySelector('.next');
+let i = 0;
+const arr = [
+    '01.jpg', '02.jpg', '03.jpg', '04.jpg',
+    '05.jpg', '06.jpg', '07.jpg', '08.jpg',
+    '09.jpg', '10.jpg', '11.jpg', '12.jpg',
+    '13.jpg', '14.jpg', '15.jpg', '16.jpg',
+    '17.jpg', '18.jpg', '19.jpg', '20.jpg'
+];
+
+const imagesArr = (arr) => {
+    const now = new Date();
+    const hours = now.getHours();
+    const shuffle = arr => {
+        const array = [...arr];
+        let i = array.length,
+            j = 0,
+            temp;
+        while (i--) {
+            j = Math.floor(Math.random() * (i+1));
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        array.length = 6;
+        return array;
+    }
+    const dayArr = shuffle(arr).map(e => `./images/day/${e}`);
+    const eveningArr = shuffle(arr).map(e => `./images/evening/${e}`);
+    const morningArr = shuffle(arr).map(e => `./images/morning/${e}`);
+    const nightArr = shuffle(arr).map(e => `./images/night/${e}`);
+    const generalArray = [...nightArr, ...morningArr, ...dayArr, ...eveningArr];
+    const finalArr = [...generalArray, ...generalArray].slice(hours);
+    finalArr.length = 24;
+    return finalArr;
+};
+const pictures = imagesArr(arr);
+
 async function getQuote() {
     const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
     const res = await fetch(url);
@@ -112,6 +150,25 @@ function focusCity(e) {
     e.target.innerText = '';
 }
 
+function viewBgImage(data) {
+    const body = document.querySelector('body');
+    const src = data;
+    const img = document.createElement('img');
+    img.src = src;
+    img.onload = () => {
+        body.style.backgroundImage = `url(${src})`;
+    };
+}
+
+function getImage() {
+    const index = i % pictures.length;
+    const imageSrc = pictures[index];
+    viewBgImage(imageSrc);
+    i += 1;
+    next.disabled = true;
+    setTimeout(function() { next.disabled = false }, 1000);
+}
+
 name.addEventListener('keypress', setName)
 name.addEventListener('click', focusName)
 name.addEventListener('blur', getName)
@@ -128,7 +185,10 @@ city.addEventListener('click', focusCity)
 city.addEventListener('blur', getWeather)
 document.addEventListener('DOMContentLoaded', getWeather);
 
+next.addEventListener('click', getImage);
+
 showTime()
 getName()
 getFocus()
 getWeather()
+getImage()

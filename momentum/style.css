@@ -1,6 +1,27 @@
+* {
+    z-index: 100;
+}
+
 body {
     margin: 0;
-    font-family: cursive;
+    font-family: monospace;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center center;
+    transition: background-image 1s ease-in-out;
+    overflow: hidden;
+    color: white;
+}
+
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background: rgba(0,0,0, 0.3);
 }
 
 .wrap {
@@ -28,35 +49,46 @@ body {
     font-size: 28px;
 }
 
-.greeting { padding-left: 14px }
-
 .name {
     display: block;
     overflow: hidden;
+    box-sizing: border-box;
     max-width: 200px;
+    height: 35px;
     white-space: nowrap;
     padding-left: 20px;
     cursor: pointer;
     outline: none;
     text-align: center;
+    border-bottom: none;
+    transition: border-bottom 1.3s ease-out;
 }
 
-.name:focus {
-    border-bottom: 1px solid;
+.name:hover,
+.focus:hover {
+    border-bottom: 2px solid;
+}
+
+.name:focus,
+.focus:focus {
+    border-bottom: 2px solid;
 }
 
 .focusTitle {
     font-size: 24px;
+    margin-bottom: 0;
 }
 
 .focus {
     display: block;
     overflow: hidden;
     max-width: 400px;
+    height: 30px;
+    padding: 0 15px;
+    box-sizing: border-box;
     white-space: nowrap;
     cursor: pointer;
     outline: none;
-    border-bottom: 1px solid;
     font-size: 24px;
 }
 
@@ -64,6 +96,9 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 90%;
+    text-align: center;
+    font-size: 20px;
 }
 
 .btn {
@@ -72,19 +107,24 @@ body {
     margin: 0 auto;
     font-size: 18px;
     border-radius: 15px;
-    border: 1px solid black;
+    border: 1px solid rgba(25, 118, 210, 0.5);
     outline: none;
     cursor: pointer;
+    color: #1976d2;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;;
 }
 
 .btn:hover {
-
+    border: 1px solid white;
+    background-color: rgba(25, 118, 210, 0.04);
+    color: white;
 }
 
 .weather {
     position: absolute;
     top: 0;
     right: 0;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(4, 1fr);
@@ -108,6 +148,25 @@ body {
 
 .city:focus {
     border-bottom: 1px solid;
+}
+
+.pagination__btn {
+    width: 120px;
+    height: 40px;
+    margin: 40px auto;
+    font-size: 18px;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border: 1px solid rgba(25, 118, 210, 0.5);
+    color: #1976d2;
+}
+
+.pagination__btn:hover {
+    border: 1px solid white;
+    background-color: rgba(25, 118, 210, 0.04);
+    color: white;
 }
 
 @media (max-width: 500px) {
