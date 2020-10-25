@@ -1,4 +1,7 @@
-body { margin: 0; }
+body {
+    margin: 0;
+    font-family: cursive;
+}
 
 .wrap {
     margin-top: 100px;
@@ -7,10 +10,22 @@ body { margin: 0; }
     align-items: center;
 }
 
+.time {
+    font-size: 50px;
+    margin: 0;
+}
+
+.date {
+    font-size: 30px;
+    margin: 0;
+    text-align: center;
+}
+
 .nameContainer {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    font-size: 28px;
 }
 
 .greeting { padding-left: 14px }
@@ -18,25 +33,31 @@ body { margin: 0; }
 .name {
     display: block;
     overflow: hidden;
-    width: 200px;
+    max-width: 200px;
     white-space: nowrap;
     margin-left: 20px;
     cursor: pointer;
     outline: none;
+    text-align: center;
 }
 
 .name:focus {
     border-bottom: 1px solid;
 }
 
+.focusTitle {
+    font-size: 24px;
+}
+
 .focus {
     display: block;
     overflow: hidden;
-    width: 400px;
+    max-width: 400px;
     white-space: nowrap;
     cursor: pointer;
     outline: none;
     border-bottom: 1px solid;
+    font-size: 24px;
 }
 
 .quoteContainer {
@@ -68,6 +89,6 @@ body { margin: 0; }
     .focusTitle { text-align: center }
 
     .focus {
-        width: 280px;
+        max-width: 280px;
     }
 }
