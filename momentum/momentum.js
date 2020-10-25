@@ -2,6 +2,17 @@ const time = document.querySelector(".time");
 const date = document.querySelector(".date");
 const name = document.querySelector(".name");
 const focus = document.querySelector(".focus")
+const blockquote = document.querySelector('blockquote');
+const figcaption = document.querySelector('figcaption');
+const btn = document.querySelector('.btn');
+
+async function getQuote() {
+    const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+    const res = await fetch(url);
+    const data = await res.json();
+    blockquote.textContent = data.quoteText;
+    figcaption.textContent = data.quoteAuthor;
+}
 
 async function showTime() {
     let today = new Date();
@@ -67,6 +78,10 @@ name.addEventListener('blur', getName)
 focus.addEventListener('keypress', setFocus)
 focus.addEventListener('click', focusFocus)
 focus.addEventListener('blur', getFocus)
+
+document.addEventListener('DOMContentLoaded', getQuote);
+btn.addEventListener('click', getQuote);
+
 
 showTime()
 getName()

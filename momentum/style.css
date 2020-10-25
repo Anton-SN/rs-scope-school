@@ -39,6 +39,27 @@ body { margin: 0; }
     border-bottom: 1px solid;
 }
 
+.quoteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn {
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    font-size: 18px;
+    border-radius: 15px;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+
+}
+
 @media (max-width: 500px) {
     .wrap {
         margin-top: 40px;
