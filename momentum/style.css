@@ -1,6 +1,52 @@
+body { margin: 0; }
+
 .wrap {
     margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.nameContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.greeting { padding-left: 14px }
+
+.name {
+    display: block;
+    overflow: hidden;
+    width: 200px;
+    white-space: nowrap;
+    margin-left: 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.name:focus {
+    border-bottom: 1px solid;
+}
+
+.focus {
+    display: block;
+    overflow: hidden;
+    width: 400px;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    border-bottom: 1px solid;
+}
+
+@media (max-width: 500px) {
+    .wrap {
+        margin-top: 40px;
+    }
+
+    .focusTitle { text-align: center }
+
+    .focus {
+        width: 280px;
+    }
 }

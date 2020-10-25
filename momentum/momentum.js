@@ -1,5 +1,7 @@
-let time = document.getElementById("time");
-let date = document.getElementById("date");
+const time = document.querySelector(".time");
+const date = document.querySelector(".date");
+const name = document.querySelector(".name");
+const focus = document.querySelector(".focus")
 
 async function showTime() {
     let today = new Date();
@@ -18,4 +20,54 @@ async function showTime() {
     setTimeout(showTime, 1000);
 }
 
+async function getName() {
+    if (localStorage.getItem('name') === null) {
+        name.innerHTML = 'Enter Name';
+    } else {
+        name.innerHTML = localStorage.getItem('name');
+    }
+}
+
+function setName(e) {
+    const  { keyCode } = e;
+    if ( keyCode === 13) {
+        localStorage.setItem('name', e.target.innerText);
+        name.blur();
+    }
+}
+
+function focusName(e) {
+    e.target.innerText = '';
+}
+
+async function getFocus() {
+    if (localStorage.getItem('focus') === null) {
+        focus.innerHTML = 'Enter Focus';
+    } else {
+        focus.innerHTML = localStorage.getItem('focus');
+    }
+}
+
+function setFocus(e) {
+    const  { keyCode } = e;
+    if ( keyCode === 13) {
+        localStorage.setItem('focus', e.target.innerText);
+        focus.blur();
+    }
+}
+
+function focusFocus(e) {
+    e.target.innerText = '';
+}
+
+name.addEventListener('keypress', setName)
+name.addEventListener('click', focusName)
+name.addEventListener('blur', getName)
+
+focus.addEventListener('keypress', setFocus)
+focus.addEventListener('click', focusFocus)
+focus.addEventListener('blur', getFocus)
+
 showTime()
+getName()
+getFocus()
