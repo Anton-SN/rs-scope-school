@@ -128,7 +128,7 @@ async function getWeather() {
         const data = await res.json();
         weatherIcon.className = 'weather-icon owf';
         weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-        temperature.textContent = `${data.main.temp}°C, ${data.wind.speed} m/s`;
+        temperature.textContent = `${data.main.temp}°C, ${data.wind.speed} m/s, ${data.main.humidity}%`;
         weatherDescription.textContent = data.weather[0].description;
     } catch (e) {
         console.log(e)

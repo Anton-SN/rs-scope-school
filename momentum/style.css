@@ -125,6 +125,7 @@ body {
     top: 0;
     right: 0;
     margin-top: 10px;
+    margin-right: 10px;
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(4, 1fr);
