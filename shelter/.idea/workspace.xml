@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68f0f017-5cb4-4b90-9593-4a2fbb449611" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/main/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/pets/pets.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pets/pets.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +98,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603722245760" />
+    <state x="667" y="120" key="RollbackChangesDialog" timestamp="1603745879134">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="120" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603745879134" />
     <state x="0" y="0" width="945" height="1015" key="dock-window-1" timestamp="1603722900888">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

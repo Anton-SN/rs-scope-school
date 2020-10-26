@@ -207,7 +207,7 @@ const changePets = (e) => {
     if (windowInnerWidth >= 1280) { n = 3 }
     ost = shuffle(ost)
     let newArr = ost.slice(0, n);
-    let trans = newArr.slice(n, ost.length);
+    let trans = ost.slice(n, ost.length);
     ost = [...trans, ...current];
     current = newArr;
     const container = document.createElement('div');
