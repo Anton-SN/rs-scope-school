@@ -101,7 +101,9 @@ const showPopup = e => {
     popup.append(popupInfo);
     popup.append(popupClose);
     popupAdd.append(popup);
+    const y = window.scrollY;
     overlayPopup.style.display = 'block';
+    popup.style.top = y + 'px';
     popup.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 };
