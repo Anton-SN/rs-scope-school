@@ -263,6 +263,12 @@ fullLeft.addEventListener('click', paginationAction);
 left.addEventListener('click', paginationAction);
 right.addEventListener('click', paginationAction);
 fullRight.addEventListener('click', paginationAction);
+window.addEventListener('resize', () => {
+    const cardContainer = document.querySelector('.cardContainer')
+    cardContainer.parentNode.removeChild(cardContainer)
+    generatePets()
+    paginationAction()
+}, false)
 
 generatePets()
 paginationAction()

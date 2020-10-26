@@ -2,6 +2,11 @@ const cards = document.querySelectorAll('.card');
 const overlayPopup = document.querySelector('.overlayPopup');
 const popupAdd = document.querySelector('.main__pets');
 
+const left = document.querySelector('.left')
+const right = document.querySelector('.right')
+let current
+let ost
+
 const showPopup = e => {
     let { path } = e
     const classCard = path.map(e =>e.className)
@@ -114,7 +119,126 @@ const closePopup = () => {
     popup.parentNode.removeChild(popup)
 }
 
+const generatePets = () => {
+    const shuffle = arr => {
+        const array = [...arr];
+        let i = array.length,
+            j = 0,
+            temp;
+        while (i--) {
+            j = Math.floor(Math.random() * (i+1));
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        array.length;
+        return array;
+    }
+    currentPets = [...shuffle(pets)]
+        .map(({ img, name })=> ({ img, name}));
+
+    const domPets = currentPets.map(({img, name}) => {
+        const card = document.createElement('div');
+        const card__wrap = document.createElement('div');
+        const card__img = document.createElement('img');
+        card.classList.add('card');
+        card.classList.add(name);
+        card__wrap.classList.add('card__wrap');
+        card__img.setAttribute('src', img)
+        card__img.setAttribute('alt', name)
+
+        const card__title = document.createElement('h4');
+        const card__btn = document.createElement('button');
+        card__title.innerHTML = name;
+        card__btn.innerHTML = 'Learn more';
+        card__btn.classList.add('card__btn');
+        card__title.classList.add('card__title');
+
+        card__wrap.append(card__img);
+        card.append(card__wrap);
+        card.append(card__title);
+        card.append(card__btn);
+        card.addEventListener('click', showPopup)
+        return card;
+    })
+
+    const windowInnerWidth = window.innerWidth;
+    let n
+    if (768 > windowInnerWidth) { n = 1 }
+    if (windowInnerWidth >= 768 && windowInnerWidth < 1280) { n = 2 }
+    if (windowInnerWidth >= 1280) { n = 3 }
+
+    current = domPets.slice(0, n);
+    ost = domPets.slice(n, domPets.length);
+
+    const container = document.createElement('div');
+    container.classList.add("cardContainer");
+    const list = current.reduce((acc, e) => {
+        acc.append(e)
+        return acc
+    }, container)
+
+    left.after(container)
+}
+
+const changePets = (e) => {
+    const value = e.target.value;
+    const shuffle = arr => {
+        const array = [...arr];
+        let i = array.length,
+            j = 0,
+            temp;
+        while (i--) {
+            j = Math.floor(Math.random() * (i+1));
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        array.length;
+        return array;
+    }
+
+    const cardContainer = document.querySelector('.cardContainer')
+    cardContainer.parentNode.removeChild(cardContainer)
+    const windowInnerWidth = window.innerWidth;
+    let n
+    if (768 > windowInnerWidth) { n = 1 }
+    if (windowInnerWidth >= 768 && windowInnerWidth < 1280) { n = 2 }
+    if (windowInnerWidth >= 1280) { n = 3 }
+    ost = shuffle(ost)
+    let newArr = ost.slice(0, n);
+    let trans = newArr.slice(n, ost.length);
+    ost = [...trans, ...current];
+    current = newArr;
+    const container = document.createElement('div');
+    container.classList.add("cardContainer");
+    const list = current.reduce((acc, e) => {
+        acc.append(e)
+        return acc
+    }, container)
+
+    if (value === '1') {
+        console.log(value)
+        container.style.transform = 'translate(-1000px, 0)'
+    }
+    if (value === '2') container.style.transform = 'translate(1000px, 0)'
+    left.after(container)
+    setTimeout(() => {
+        container.style.transform = 'translate(0, 0)'
+    }, 0)
+}
+
 cards.forEach(elem => elem.addEventListener('click', showPopup))
 overlayPopup.addEventListener('mouseover', hoverToPopup);
 overlayPopup.addEventListener('mouseout', deleteHoverToPopup);
 overlayPopup.addEventListener('click', closePopup);
+
+left.addEventListener('click', changePets);
+right.addEventListener('click', changePets);
+
+generatePets()
+window.addEventListener('resize', () => {
+    const cardContainer = document.querySelector('.cardContainer')
+    cardContainer.parentNode.removeChild(cardContainer)
+    generatePets()
+}, false)
