@@ -20,10 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68f0f017-5cb4-4b90-9593-4a2fbb449611" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/main/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/pets/pets.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pages/main/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pages/main/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pages/main/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pages/main/main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/pages/pets/pets.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/pages/pets/pets.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/main/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/main/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main/main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/main/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/normalize.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/pets/pets.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pets/pets.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/pets/pets.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/pets/pets.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/pages/pets/pets.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,9 +39,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -53,10 +59,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../proj/frontend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\feeling good\rs school private\anton-sn-JS2020Q3\shelter" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -92,9 +103,17 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1603383190544">
+    <state x="1167" y="219" key="FileChooserDialogImpl" timestamp="1603722245760">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603383190544" />
+    <state x="1167" y="219" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603722245760" />
+    <state x="0" y="0" width="945" height="1015" key="dock-window-1" timestamp="1603722900888">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="0" y="0" width="945" height="1015" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1603722900888" />
+    <state x="1019" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1603723171644">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1019" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1603723171644" />
   </component>
 </project>
