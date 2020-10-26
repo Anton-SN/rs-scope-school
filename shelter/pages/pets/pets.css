@@ -210,10 +210,10 @@ h2, h3, h4, h5 {
 }
 
 .pets {
-    height: 1342px;
+    height: 1120px;
     width: 1200px;
     box-sizing: border-box;
-    padding: 80px 0 100px 0;
+    padding: 80px 0 0 0;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -233,6 +233,18 @@ h2, h3, h4, h5 {
     justify-content: space-between;
     align-items: flex-end;
     flex-wrap: wrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.cardContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    position: absolute;
 }
 
 .card {
@@ -243,6 +255,7 @@ h2, h3, h4, h5 {
     align-items: center;
     background: #FAFAFA;
     border-radius: 9px;
+    margin-bottom: 30px
 }
 
 .card__title {
@@ -264,6 +277,13 @@ h2, h3, h4, h5 {
     width: 340px;
     display: flex;
     justify-content: space-between;
+    margin: 30px auto;
+}
+
+.pagination:hover {
+    border: none;
+    background: #F1CDB3;
+    cursor: default;
 }
 
 .main__footer {
@@ -473,8 +493,6 @@ h2, h3, h4, h5 {
 
     .card { margin-bottom: 30px }
 
-    .pets__navigation { margin-top: 20px }
-
     .displayNone { display: none }
 
     .footer {
@@ -556,13 +574,20 @@ h2, h3, h4, h5 {
 
     .pets__cards {
         width: 93.75%;
-        height: auto;
         justify-content: center;
+    }
+
+    .cardContainer {
+        width: 93.75%;
+        justify-content: center;
+    }
+
+    .card {
+        margin: 0 100px 30px 100px;
     }
 
     .pets__navigation {
         width: 93.75%;
-        margin-top: 12px;
     }
 
     .displayNone2 { display: none }

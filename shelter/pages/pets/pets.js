@@ -1,9 +1,17 @@
-const cards = document.querySelectorAll('.card');
 const overlayPopup = document.querySelector('.overlayPopup');
 const popupAdd = document.querySelector('.main__pets');
 
+const pets__cards = document.querySelector('.pets__cards');
+const fullLeft = document.querySelector('.fillLeft')
+const left = document.querySelector('.left')
+const pagination = document.querySelector('.pagination')
+const right = document.querySelector('.right')
+const fullRight = document.querySelector('.fullRight')
+let currentPets;
+let i = 1;
+let iMax;
+
 const showPopup = e => {
-    console.log(e)
     let { path } = e
     const classCard = path.map(e => e.className)
         .filter(e =>
@@ -17,14 +25,11 @@ const showPopup = e => {
             e !== 'main' &&
             e !== 'card__btn'
         )[0];
-    console.log(path.map(e => e.className))
-    console.log(classCard)
     const name = classCard.split(' ').filter(e =>
         e !== 'card' &&
+        e !== 'card__wrap' &&
         e !== 'displayNone' &&
         e !== 'displayNone2')[0]
-    console.log(name)
-    console.log(pets)
     const petsPopup = pets.filter(e => e.name === name)[0]
     const {
         name: petsName,
@@ -119,9 +124,145 @@ const closePopup = e => {
     popup.parentNode.removeChild(popup)
 }
 
-console.log(cards)
+const generatePets = (array) => {
+    const shuffle = arr => {
+        const array = [...arr];
+        let i = array.length,
+            j = 0,
+            temp;
+        while (i--) {
+            j = Math.floor(Math.random() * (i+1));
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        array.length;
+        return array;
+    }
+    currentPets = [...shuffle(pets), ...shuffle(pets), ...shuffle(pets), ...shuffle(pets), ...shuffle(pets), ...shuffle(pets)]
+        .map(({ img, name })=> ({ img, name}));
 
-cards.forEach(elem => elem.addEventListener('click', showPopup))
+    const domPets = currentPets.map(({img, name}) => {
+        const card = document.createElement('div');
+        const card__wrap = document.createElement('div');
+        const card__img = document.createElement('img');
+        card.classList.add('card');
+        card.classList.add(name);
+        card__wrap.classList.add('card__wrap');
+        card__img.setAttribute('src', img)
+        card__img.setAttribute('alt', name)
+
+        const card__title = document.createElement('h4');
+        const card__btn = document.createElement('button');
+        card__title.innerHTML = name;
+        card__btn.innerHTML = 'Learn more';
+        card__btn.classList.add('card__btn');
+        card__title.classList.add('card__title');
+
+        card__wrap.append(card__img);
+        card.append(card__wrap);
+        card.append(card__title);
+        card.append(card__btn);
+        card.addEventListener('click', showPopup)
+        return card;
+    })
+
+    const container= document.createElement('div');
+    container.classList.add("cardContainer");
+    const list = domPets.reduce((acc, e) => {
+        acc.append(e)
+        return acc
+    }, container)
+    pets__cards.append(container)
+
+    fullLeft.classList.add('inactive');
+    left.classList.add('inactive');
+}
+
+const changeStatusButton = (max) => {
+    if (+i === +max) {
+        fullRight.classList.add('inactive')
+        right.classList.add('inactive')
+        left.classList.remove('inactive')
+        fullLeft.classList.remove('inactive')
+        return;
+    }
+    if (+i === 1) {
+        fullRight.classList.remove('inactive')
+        right.classList.remove('inactive')
+        left.classList.add('inactive')
+        fullLeft.classList.add('inactive')
+        return;
+    }
+    fullRight.classList.remove('inactive')
+    right.classList.remove('inactive')
+    left.classList.remove('inactive')
+    fullLeft.classList.remove('inactive')
+    return null;
+}
+
+const paginationAction = e => {
+    const windowInnerWidth = window.innerWidth;
+    const value = e === undefined ? null : e.target.value;
+    const className = e === undefined ? '423432' : e.target.className;
+    const container = document.querySelector('.cardContainer');
+    const length = currentPets.length;
+    fullRight.classList.add('inactive')
+    right.classList.add('inactive')
+    let n, c
+    if (768 > windowInnerWidth) {
+        c = 3
+        n = 3
+    }
+    if (windowInnerWidth >= 768 && windowInnerWidth < 1280) {
+        c = 3
+        n = 6
+    }
+    if (windowInnerWidth >= 1280) {
+        c = 2
+        n = 8
+    }
+    if ( className.indexOf('inactive') !== -1) return;
+    iMax = length/n
+    switch (value) {
+        case '1':
+            i = 1;
+            pagination.innerHTML = i;
+            container.style.top = `-${465 * c * (2 - 1)}px`
+            changeStatusButton(iMax);
+            return;
+        case '2':
+            i += -1
+            pagination.innerHTML = i;
+            container.style.top = `-${465 * c * (i - 1)}px`
+            changeStatusButton(iMax);
+            return;
+        case '3':
+            i += 1
+            pagination.innerHTML = i;
+            container.style.top = `-${465 * c * (i - 1)}px`
+            changeStatusButton(iMax);
+            return;
+        case '4':
+            i = iMax;
+            pagination.innerHTML = i;
+            container.style.top = `-${465 * c * (iMax - 1)}px`
+            changeStatusButton(iMax);
+            return;
+        default:
+            changeStatusButton(iMax);
+            return;
+    }
+}
+
 overlayPopup.addEventListener('mouseover', hoverToPopup);
 overlayPopup.addEventListener('mouseout', deleteHoverToPopup);
 overlayPopup.addEventListener('click', closePopup);
+
+fullLeft.addEventListener('click', paginationAction);
+left.addEventListener('click', paginationAction);
+right.addEventListener('click', paginationAction);
+fullRight.addEventListener('click', paginationAction);
+
+generatePets()
+paginationAction()
