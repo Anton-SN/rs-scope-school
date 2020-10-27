@@ -127,7 +127,6 @@ h2, h3, h4, h5 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 10;
 }
 
 .logo__title {
@@ -678,6 +677,12 @@ h2, h3, h4, h5 {
 
 .burgerOverlay {
     margin-left: -50px;
+    display: none;
+    background: rgba(41, 41, 41, 0.6);
+    position: absolute;
+    top: -1800px;
+    width: 100vw;
+    height: 450vh;
 }
 
 /*------------------------------------------------*/

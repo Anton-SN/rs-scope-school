@@ -245,6 +245,8 @@ const burger = e => {
 
 const closeBurger = () => {
     toggleBurger.checked = false;
+    overlayBurger.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 cards.forEach(elem => elem.addEventListener('click', showPopup))

@@ -273,7 +273,9 @@ const burger = e => {
 }
 
 const closeBurger = () => {
-    toggleBurger.checked = false;
+    toggleBurger.checked = false
+    overlayPopup.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
 
 overlayPopup.addEventListener('mouseover', hoverToPopup);
