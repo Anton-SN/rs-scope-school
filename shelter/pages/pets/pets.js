@@ -11,6 +11,9 @@ let currentPets;
 let i = 1;
 let iMax;
 
+const toggleBurger = document.getElementById('menu__toggle')
+const overlayBurger = document.querySelector('.burgerOverlay')
+
 const showPopup = e => {
     let { path } = e
     const classCard = path.map(e => e.className)
@@ -257,6 +260,22 @@ const paginationAction = e => {
     }
 }
 
+const burger = e => {
+    const checked = e.target.checked;
+    if (checked) {
+        overlayPopup.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    else {
+        overlayPopup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+const closeBurger = () => {
+    toggleBurger.checked = false;
+}
+
 overlayPopup.addEventListener('mouseover', hoverToPopup);
 overlayPopup.addEventListener('mouseout', deleteHoverToPopup);
 overlayPopup.addEventListener('click', closePopup);
@@ -271,6 +290,9 @@ window.addEventListener('resize', () => {
     generatePets()
     paginationAction()
 }, false)
+
+toggleBurger.addEventListener('click', burger)
+overlayPopup.addEventListener('click', closeBurger)
 
 generatePets()
 paginationAction()

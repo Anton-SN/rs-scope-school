@@ -11,18 +11,32 @@
   <section class="main__header">
     <header class="header">
       <div class="header__logo">
-        <h1 class="logo__title"><a>Cozy House</a></h1>
+        <h1 class="logo__title"><a href="./main.html">Cozy House</a></h1>
         <span class="logo__subTitle">Shelter for pets in Boston</span>
       </div>
       <nav class="header__nav">
         <ul class="nav__menu">
-          <li class="nav__item nav__item-active"><a>About the shelter</a></li>
+          <li class="nav__item nav__item-active"><a href="./main.html">About the shelter</a></li>
           <li class="nav__item"><a href="../pets/pets.html">Our pets</a></li>
           <li class="nav__item"><a>Help the shelter</a></li>
           <li class="nav__item"><a>Contacts</a></li>
         </ul>
       </nav>
-      <div class="burger"><img src="../../assets/icons/burger.svg" alt="burger"/></div>
+      <div class="burger">
+        <div class="hamburger-menu">
+        <input id="menu__toggle" type="checkbox" />
+        <label class="menu__btn" for="menu__toggle">
+          <span class="burger-click"></span>
+        </label>
+        <ul class="menu__box">
+          <li class="hamburger__item hamburger__item--active"><a href="./main.html">About the shelter</a></li>
+          <li class="hamburger__item"><a href="../pets/pets.html">Our pets</a></li>
+          <li class="hamburger__item"><a>Help the shelter</a></li>
+          <li class="hamburger__item"><a>Contacts</a></li>
+        </ul>
+      </div>
+      </div>
+      <div class="overlayPopup burgerOverlay"></div>
     </header>
     <main class="startScreen">
       <div class="startScreen__contentStart">

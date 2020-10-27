@@ -7,6 +7,9 @@ const right = document.querySelector('.right')
 let current
 let ost
 
+const toggleBurger = document.getElementById('menu__toggle')
+const overlayBurger = document.querySelector('.burgerOverlay')
+
 const showPopup = e => {
     let { path } = e
     const classCard = path.map(e =>e.className)
@@ -228,6 +231,22 @@ const changePets = (e) => {
     }, 0)
 }
 
+const burger = e => {
+    const checked = e.target.checked;
+    if (checked) {
+        overlayBurger.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    else {
+        overlayBurger.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+const closeBurger = () => {
+    toggleBurger.checked = false;
+}
+
 cards.forEach(elem => elem.addEventListener('click', showPopup))
 overlayPopup.addEventListener('mouseover', hoverToPopup);
 overlayPopup.addEventListener('mouseout', deleteHoverToPopup);
@@ -235,6 +254,9 @@ overlayPopup.addEventListener('click', closePopup);
 
 left.addEventListener('click', changePets);
 right.addEventListener('click', changePets);
+
+toggleBurger.addEventListener('click', burger)
+overlayBurger.addEventListener('click', closeBurger)
 
 generatePets()
 window.addEventListener('resize', () => {

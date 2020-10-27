@@ -146,6 +146,7 @@ h2, h3, h4, h5 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 10;
 }
 
 .logo__title {
@@ -168,6 +169,10 @@ h2, h3, h4, h5 {
     line-height: 16px;
     letter-spacing: 0.1em;
     color: #292929;
+}
+
+.burger {
+    display: none;
 }
 
 .nav__menu {
@@ -455,6 +460,124 @@ h2, h3, h4, h5 {
     height: 450vh;
 }
 
+.hamburger-menu {
+    margin-top: -25px;
+}
+
+#menu__toggle {
+    opacity: 0;
+}
+
+#menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(90deg);
+}
+
+#menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    right: 0;
+}
+
+.menu__btn {
+    display: flex;
+    align-items: center;
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    cursor: pointer;
+    z-index: 100;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+    display: block;
+    position: absolute;
+    z-index: 100;
+
+    width: 30px;
+    height: 2px;
+
+    background-color: #F1CDB3;
+
+    transition-duration: .25s;
+}
+
+.menu__btn > span::before {
+    content: '';
+    top: -10px;
+}
+
+.menu__btn > span::after {
+    content: '';
+    top: 10px;
+}
+
+.menu__box {
+    display: flex;
+    position: fixed;
+    visibility: hidden;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    right: -100%;
+
+    width: 320px;
+    height: 100%;
+
+    margin: 0;
+    padding: 100px 0;
+
+    list-style: none;
+
+    background-color: #292929;
+    box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
+
+    transition-duration: .25s;
+}
+
+.hamburger__item {
+    display: block;
+
+    text-decoration: none;
+
+    transition-duration: .25s;
+
+    font-family: Arial, serif;
+    font-size: 32px;
+    line-height: 160%;
+
+    color: #CDCDCD;
+}
+
+.hamburger__item a {
+    color: #CDCDCD;
+}
+
+.hamburger__item-active {
+    color: #FAFAFA;
+    border-color: #F1CDB3;;
+}
+
+.hamburger__item a:hover {
+    color: #FAFAFA;
+    cursor: pointer;
+}
+
+.hamburger__item a:active{
+    border-bottom: 2px solid #F1CDB3;;
+}
+
+.burgerOverlay {
+    margin-left: -50px;
+}
+
+.hamburger__item--active a{
+    border-bottom: 2px solid #F1CDB3;;
+}
+
+
 /*------------------------------------------------*/
 /*--------------------Adaptive--------------------*/
 
@@ -555,10 +678,7 @@ h2, h3, h4, h5 {
     .burger {
         display: block;
         margin: 19px 40px 0 0;
-    }
-
-    .burger:hover {
-        cursor: pointer;
+        z-index: 1;
     }
 
     .pets {
