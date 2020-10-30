@@ -5,12 +5,9 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="owfont-regular.css" />
     <title>Momentum</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div style="width: 120px; display: flex; justify-content: flex-start; margin-top: 20px; position: absolute; top: 0">
-    <p>Если есть вопросы пиши в <a target="_blank" href="https://t.me/Anton1310">телегу</a></p>
-</div>
-    <section class="wrap">
         <h1 class="time"></h1>
         <h1 class="date"></h1>
         <h2 class="nameContainer">
@@ -20,6 +17,8 @@
         </h2>
         <h2 class="focusTitle">What Is Your Focus For Today?</h2>
         <h2 class="focus" contenteditable>Enter Focus</h2>
+        <button class="pagination__btn next">Next image</button>
+        <button class="btn">Change quote?</button>
         <div class="quoteContainer">
             <figure class="quote">
                 <blockquote>
@@ -27,16 +26,13 @@
                 <figcaption>
                 </figcaption>
             </figure>
-            <button class="btn">Change quote?</button>
         </div>
-            <button class="pagination__btn next">Next image</button>
         <div class="weather">
             <i class="weather-icon owf"></i>
             <div class="temperature"></div>
             <div class="weather-description"></div>
             <span class="city" contenteditable></span>
         </div>
-    </section>
     <div class="bg-overlay"></div>
     <script src="momentum.js"></script>
 </body>
