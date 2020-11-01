@@ -1,3 +1,7 @@
+const openBtn = document.querySelector('.open-keyboard')
+const closeBtn = document.querySelector('.close-keyboard')
+const input = document.querySelector('.use-keyboard-input')
+
 const Keyboard = {
     elements: {
         main: null,
@@ -32,13 +36,13 @@ const Keyboard = {
         document.body.appendChild(this.elements.main);
 
         // Automatically use keyboard for elements with .use-keyboard-input
-        document.querySelectorAll(".use-keyboard-input").forEach(element => {
-            element.addEventListener("focus", () => {
-                this.open(element.value, currentValue => {
-                    element.value = currentValue;
-                });
-            });
-        });
+        // document.querySelectorAll(".use-keyboard-input").forEach(element => {
+        //     element.addEventListener("focus", () => {
+        //         this.open(element.value, currentValue => {
+        //             element.value = currentValue;
+        //         });
+        //     });
+        // });
     },
 
     _createKeys() {
@@ -90,7 +94,19 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("backspace");
 
                     keyElement.addEventListener("click", () => {
-                        this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
+                        const start = input.selectionStart;
+                        if (start === 0) {
+                            input.focus();
+                            return;
+                        }
+                        let before = this.properties.value.slice(0, start - 1);
+                        let after =  this.properties.value.slice(start,  this.properties.value.length)
+                        console.log(before, after)
+                        this.properties.value = before + after;
+                        input.value = this.properties.value;
+                        input.focus();
+                        input.selectionStart = start - 1;
+                        input.selectionEnd = start - 1;
                         this._triggerEvent("oninput");
                     });
 
@@ -103,6 +119,7 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this._toggleCapsLock();
                         keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+                        input.focus();
                     });
 
                     break;
@@ -114,6 +131,7 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "\n";
                         this._triggerEvent("oninput");
+                        input.focus();
                     });
 
                     break;
@@ -123,7 +141,15 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("keyboard_return");
 
                     keyElement.addEventListener("click", () => {
-                        this.properties.value += "\n";
+                        const start = input.selectionStart;
+                        let before = this.properties.value.slice(0, start);
+                        let after =  this.properties.value.slice(start,  this.properties.value.length)
+                        before += "\n";
+                        this.properties.value = before + after;
+                        input.value = this.properties.value;
+                        input.focus();
+                        input.selectionStart = start + 1;
+                        input.selectionEnd = start + 1;
                         this._triggerEvent("oninput");
                     });
 
@@ -134,7 +160,15 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("space_bar");
 
                     keyElement.addEventListener("click", () => {
-                        this.properties.value += " ";
+                        const start = input.selectionStart;
+                        let before = this.properties.value.slice(0, start);
+                        let after =  this.properties.value.slice(start,  this.properties.value.length)
+                        before += " ";
+                        this.properties.value = before + after;
+                        input.value = this.properties.value;
+                        input.focus();
+                        input.selectionStart = start + 1;
+                        input.selectionEnd = start + 1;
                         this._triggerEvent("oninput");
                     });
 
@@ -147,6 +181,7 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "\n";
                         this._triggerEvent("oninput");
+                        input.focus();
                     });
 
                     break;
@@ -159,6 +194,7 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "\n";
                         this._triggerEvent("oninput");
+                        input.focus();
                     });
 
                     break;
@@ -172,6 +208,7 @@ const Keyboard = {
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "\n";
                         this._triggerEvent("oninput");
+                        input.focus();
                     });
 
                     break;
@@ -181,7 +218,15 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("keyboard_arrow_right");
 
                     keyElement.addEventListener("click", () => {
-                        this.properties.value += "\n";
+                        const start = input.selectionStart;
+                        let before = this.properties.value.slice(0, start);
+                        let after =  this.properties.value.slice(start,  this.properties.value.length)
+                        before += "\n";
+                        this.properties.value = before + after;
+                        input.value = this.properties.value;
+                        input.focus();
+                        input.selectionStart = start + 1;
+                        input.selectionEnd = start + 1;
                         this._triggerEvent("oninput");
                     });
 
@@ -202,7 +247,15 @@ const Keyboard = {
                     keyElement.textContent = key.toLowerCase();
 
                     keyElement.addEventListener("click", () => {
-                        this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+                        const start = input.selectionStart;
+                        let before = this.properties.value.slice(0, start);
+                        let after =  this.properties.value.slice(start,  this.properties.value.length)
+                        before += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
+                        this.properties.value = before + after;
+                        input.value = this.properties.value;
+                        input.focus();
+                        input.selectionStart = start + 1;
+                        input.selectionEnd = start + 1;
                         this._triggerEvent("oninput");
                     });
 
@@ -236,6 +289,7 @@ const Keyboard = {
     },
 
     open(initialValue, oninput, onclose) {
+        console.log(initialValue)
         this.properties.value = initialValue || "";
         this.eventHandlers.oninput = oninput;
         this.eventHandlers.onclose = onclose;
@@ -253,3 +307,26 @@ const Keyboard = {
 window.addEventListener("DOMContentLoaded", function () {
     Keyboard.init();
 });
+
+const keyBoardOpen = () => {
+    const initialValue = input.value;
+    console.log(initialValue)
+    input.focus();
+    Keyboard.open(initialValue);
+    openBtn.classList.add('hidden');
+    closeBtn.classList.remove('hidden');
+}
+
+const keyBoardClose = () => {
+    Keyboard.close();
+    openBtn.classList.remove('hidden');
+    closeBtn.classList.add('hidden');
+}
+
+const inputText = () => {
+    Keyboard.properties.value = input.value;
+}
+
+openBtn.addEventListener('click', keyBoardOpen);
+closeBtn.addEventListener('click', keyBoardClose);
+input.addEventListener('keydown', inputText);

@@ -4,7 +4,7 @@
     margin: 30px auto;
     padding: 10px;
     font-size: 20px;
-    height: calc(100vh - 380px);
+    height: calc(100vh - 430px);
     min-height: 300px;
 }
 
@@ -87,5 +87,25 @@
     width: 80px;
 }
 
-@media (max-width: 500px) {
+.open-keyboard,
+.close-keyboard {
+    margin: 0 auto;
+    width: 200px;
+    height: 45px;
+    background: #2f675d;
+    outline: none;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+
+.open-keyboard:hover,
+.close-keyboard:hover {
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+    display: none;
 }
