@@ -102,7 +102,7 @@ const Keyboard = {
 
         keyLayout[this.properties.lang ? 'rus' : 'eng'].forEach(key => {
             const keyElement = document.createElement("button");
-            const insertLineBreak = ["backspace", "\\", "enter", "рус", "en"].indexOf(key) !== -1;
+            const insertLineBreak = ["backspace", "\\", "enter", "ru", "en"].indexOf(key) !== -1;
 
             // Add attributes/classes
             keyElement.setAttribute("type", "button");
@@ -201,10 +201,13 @@ const Keyboard = {
                     keyElement.classList.add("keyboard__key--wide");
                     keyElement.innerHTML = createIconHTML("keyboard_arrow_left");
 
-                    keyElement.addEventListener("click", () => {
-                        this.properties.value += "\n";
-                        this._triggerEvent("oninput");
+                    keyElement.addEventListener("click", (e) => {
                         input.focus();
+                        const start = input.selectionStart;
+                        input.focus();
+                        input.selectionStart = start - 1 >= 0 ? start - 1 : 0;
+                        input.selectionEnd = start - 1;
+                        this._triggerEvent("oninput");
                     });
 
                     break;
@@ -215,9 +218,14 @@ const Keyboard = {
                     keyElement.style = "height: 20px; width: 80px"
 
                     keyElement.addEventListener("click", () => {
-                        this.properties.value += "\n";
-                        this._triggerEvent("oninput");
+                        const start = input.selectionStart;
+                        const end = input.selectionEnd;
+                        console.log(this.properties.value.split('\n'))
+                        console.log(start, end)
                         input.focus();
+                        input.selectionStart = start;
+                        input.selectionEnd = end;
+                        this._triggerEvent("oninput");
                     });
 
                     break;
@@ -241,12 +249,8 @@ const Keyboard = {
                     keyElement.innerHTML = createIconHTML("keyboard_arrow_right");
 
                     keyElement.addEventListener("click", () => {
+                        input.focus();
                         const start = input.selectionStart;
-                        let before = this.properties.value.slice(0, start);
-                        let after =  this.properties.value.slice(start,  this.properties.value.length)
-                        before += "\n";
-                        this.properties.value = before + after;
-                        input.value = this.properties.value;
                         input.focus();
                         input.selectionStart = start + 1;
                         input.selectionEnd = start + 1;
@@ -385,7 +389,7 @@ const Keyboard = {
         if (keyLang) {
             this.elements.keys.forEach((e, i) => {
                 const caps = this.properties.capsLock;
-                if (keyLayout[lang][i].length <= 2) {
+                if (keyLayout[keyLang][i].length <= 2) {
 
                     if (caps) {
                         e.textContent = keyLayout[keyLang][i].toUpperCase();
