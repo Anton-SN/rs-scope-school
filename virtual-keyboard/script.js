@@ -47,29 +47,38 @@ const Keyboard = {
             eng:
                 [
                     "`","1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
-                    "tab","q", "w", "e", "r", "t", "y", "u", "i", "o", "p","[", "]" , "/\/",
+                    "q", "w", "e", "r", "t", "y", "u", "i", "o", "p","[", "]" , "\\",
                     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
-                    "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-                    "space"
+                    "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "рус",
+                    "space", 'left', 'top', 'bottom', 'right'
             ],
             ru:
                 [
                     "ё","1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
-                    "tab","й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "/\/",
+                    "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
                     "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д","ж", "э", "enter",
-                    "done", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".",
-                    "space"
+                    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "en",
+                    "space", 'left', 'top', 'bottom', 'right'
                 ],
     };
 
         // Creates HTML for an icon
-        const createIconHTML = (icon_name) => {
-            return `<i class="material-icons">${icon_name}</i>`;
+        const createIconHTML = (icon_name, type) => {
+            switch (type) {
+                case "shift":
+                    return `<i style="transform: rotate(90deg)" class="material-icons">${icon_name}</i>`;
+                case "top":
+                    return `<i style="transform: rotate(90deg)" class="material-icons">${icon_name}</i>`;
+                case "bottom":
+                    return `<i style="transform: rotate(-90deg)" class="material-icons">${icon_name}</i>`;
+                default:
+                        return `<i  class="material-icons">${icon_name}</i>`;
+            }
         };
 
         keyLayout["ru"].forEach(key => {
             const keyElement = document.createElement("button");
-            const insertLineBreak = ["backspace", "p", "enter", "?"].indexOf(key) !== -1;
+            const insertLineBreak = ["backspace", "\\", "enter", "рус", "en"].indexOf(key) !== -1;
 
             // Add attributes/classes
             keyElement.setAttribute("type", "button");
@@ -98,6 +107,17 @@ const Keyboard = {
 
                     break;
 
+                case "shift":
+                    keyElement.classList.add("keyboard__key--wide");
+                    keyElement.innerHTML = createIconHTML("keyboard_return", 'shift');
+
+                    keyElement.addEventListener("click", () => {
+                        this.properties.value += "\n";
+                        this._triggerEvent("oninput");
+                    });
+
+                    break;
+
                 case "enter":
                     keyElement.classList.add("keyboard__key--wide");
                     keyElement.innerHTML = createIconHTML("keyboard_return");
@@ -115,6 +135,53 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value += " ";
+                        this._triggerEvent("oninput");
+                    });
+
+                    break;
+
+                case "left":
+                    keyElement.classList.add("keyboard__key--wide");
+                    keyElement.innerHTML = createIconHTML("keyboard_arrow_left");
+
+                    keyElement.addEventListener("click", () => {
+                        this.properties.value += "\n";
+                        this._triggerEvent("oninput");
+                    });
+
+                    break;
+
+                case "top":
+                    keyElement.classList.add("keyboard__key--wide");
+                    keyElement.innerHTML = createIconHTML("keyboard_arrow_left", "top");
+                    keyElement.style = "height: 20px; width: 80px"
+
+                    keyElement.addEventListener("click", () => {
+                        this.properties.value += "\n";
+                        this._triggerEvent("oninput");
+                    });
+
+                    break;
+
+                case "bottom":
+                    keyElement.classList.add("keyboard__key--wide");
+                    keyElement.classList.add("arrow__bottom");
+                    keyElement.innerHTML = createIconHTML("keyboard_arrow_left", "bottom");
+                    keyElement.style = "height: 20px"
+
+                    keyElement.addEventListener("click", () => {
+                        this.properties.value += "\n";
+                        this._triggerEvent("oninput");
+                    });
+
+                    break;
+
+                case "right":
+                    keyElement.classList.add("keyboard__key--wide");
+                    keyElement.innerHTML = createIconHTML("keyboard_arrow_right");
+
+                    keyElement.addEventListener("click", () => {
+                        this.properties.value += "\n";
                         this._triggerEvent("oninput");
                     });
 
