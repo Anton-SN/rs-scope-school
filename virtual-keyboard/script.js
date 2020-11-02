@@ -8,7 +8,7 @@ const keyLayout = {
             "`","1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p","[", "]" , "\\",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
-            "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "ru",
+            "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "lang",
             "space", 'left', 'top', 'bottom', 'right'
         ],
     engShift:
@@ -16,7 +16,7 @@ const keyLayout = {
             "~","!", "@", "#", "$", "%", "%", "^", "*", "(", ")", "_", "+", "backspace",
             "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P","{", "}" , "|",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", '"', "enter",
-            "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "ru",
+            "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "lang",
             "space", 'left', 'top', 'bottom', 'right'
         ],
     rus:
@@ -24,7 +24,7 @@ const keyLayout = {
             "ё","1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
             "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
             "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д","ж", "э", "enter",
-            "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "ru",
+            "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "lang",
             "space", 'left', 'top', 'bottom', 'right'
         ],
     rusShift:
@@ -32,7 +32,7 @@ const keyLayout = {
             "Ё","!", '"', "№", ";", "%", ":", "?", "*", "(", ")", "_", "+", "backspace",
             "Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х", "Ъ", "/",
             "caps", "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д","Ж", "Э", "enter",
-            "shift", "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", ",", "ru",
+            "shift", "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", ",", "lang",
             "space", 'left', 'top', 'bottom', 'right'
         ],
 };
@@ -299,17 +299,18 @@ const Keyboard = {
 
                     break;
 
-                case "ru":
-                    keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable")
+                case "lang":
+                    keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable", "lang")
+                    keyElement.textContent = this.properties.lang ? "ru" : "eng";
 
-                    keyElement.textContent = key.toLowerCase();
                     keyElement.addEventListener("click", () => {
                         keyElement.classList.toggle("keyboard__key--active", !this.properties.lang);
                         const start = input.selectionStart;
                         input.focus();
                         input.selectionStart = start;
                         input.selectionEnd = start;
-                        this._toggleLang()
+                        this._toggleLang();
+                        keyElement.textContent = this.properties.lang ? "ru" : "eng";
                     });
 
                     break;
@@ -354,6 +355,7 @@ const Keyboard = {
 
         for (const key of this.elements.keys) {
             if (key.childElementCount === 0) {
+                if (key.textContent === "ru" || key.textContent === "eng") break;
                 const shift = this.properties.shift;
                 key.textContent = !shift && this.properties.capsLock? key.textContent.toUpperCase() : key.textContent.toLowerCase();
             }
@@ -416,11 +418,13 @@ const Keyboard = {
 
     _toggleLang(keyLang) {
         if (keyLang) {
+            const btnLang = document.querySelector('.lang')
+            btnLang.textContent = keyLang === "rus" ? "ru" : "eng";
+            const caps = this.properties.capsLock;
+            const shift = this.properties.shift;
             this.elements.keys.forEach((e, i) => {
-                const caps = this.properties.capsLock;
                 if (keyLayout[keyLang][i].length <= 2) {
-
-                    if (caps) {
+                    if (caps && !shift) {
                         e.textContent = keyLayout[keyLang][i].toUpperCase();
                         return;
                     }
@@ -431,17 +435,21 @@ const Keyboard = {
         else
         {
             this.properties.lang = !this.properties.lang;
+            const lang = this.properties.lang ? "rus" : "eng";
+            const caps = this.properties.capsLock;
+            const shift = this.properties.shift;
             this.elements.keys.forEach((e, i) => {
-                const lang = this.properties.lang ? "rus" : "eng";
-                const caps = this.properties.capsLock;
-                const shift = this.properties.shift;
                 if (keyLayout[lang][i].length <= 2) {
-                    if (shift) {
+                    if (shift && !caps) {
                         e.textContent = keyLayout[lang + 'Shift'][i].toUpperCase();
                         return;
                     }
-                    if (caps) {
+                    if (caps && !shift) {
                         e.textContent = keyLayout[lang][i].toUpperCase();
+                        return;
+                    }
+                    if (caps && shift) {
+                        e.textContent = keyLayout[lang + 'Shift'][i].toLowerCase();
                         return;
                     }
                     e.textContent = keyLayout[lang][i]
