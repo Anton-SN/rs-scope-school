@@ -206,7 +206,7 @@ const Keyboard = {
                         const start = input.selectionStart;
                         input.focus();
                         input.selectionStart = start - 1 >= 0 ? start - 1 : 0;
-                        input.selectionEnd = start - 1;
+                        input.selectionEnd = start - 1 >= 0 ? start - 1 : 0;
                         this._triggerEvent("oninput");
                     });
 
@@ -219,12 +219,23 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         const start = input.selectionStart;
-                        const end = input.selectionEnd;
-                        console.log(this.properties.value.split('\n'))
-                        console.log(start, end)
+                        const current = this.properties.value.slice(0, start).split("\n");
                         input.focus();
-                        input.selectionStart = start;
-                        input.selectionEnd = end;
+                        if (current.length === 1) {
+                            input.selectionStart = 0
+                            input.selectionEnd = 0;
+                            return;
+                        }
+                        const begin = current.reduce((acc, e, i) =>
+                            (i !== current.length - 1) && (i !== current.length - 2) ? acc + e.length + 1: acc, 0)
+                        let dop
+                        if (current[current.length - 1].length > current[current.length - 2].length) {
+                            dop = current[current.length - 2].length
+                        } else {
+                            dop = current[current.length - 1].length
+                        }
+                        input.selectionStart = begin + dop;
+                        input.selectionEnd = begin + dop;
                         this._triggerEvent("oninput");
                     });
 
@@ -237,9 +248,27 @@ const Keyboard = {
                     keyElement.style = "height: 20px"
 
                     keyElement.addEventListener("click", () => {
-                        this.properties.value += "\n";
-                        this._triggerEvent("oninput");
+                        const start = input.selectionStart;
+                        const all = this.properties.value.split('\n');
+                        const current = this.properties.value.slice(0, start).split("\n");
                         input.focus();
+                        if (current.length === all.length) {
+                            const end = all.reduce((acc, e, i) =>acc + e.length + 1, 0)
+                            input.selectionStart = end
+                            input.selectionEnd = end;
+                            return;
+                        }
+                        const begin = current.reduce((acc, e, i) =>
+                            (i !== current.length - 1) ? acc + e.length + 1: acc, 0)
+                        let dop
+                        if (current[current.length - 1].length > all[current.length].length) {
+                            dop = all[current.length].length + all[current.length - 1].length + 1
+                        } else {
+                            dop = current[current.length - 1].length + all[current.length - 1].length + 1
+                        };
+                        input.selectionStart = begin + dop;
+                        input.selectionEnd = begin + dop;
+                        this._triggerEvent("oninput");
                     });
 
                     break;
