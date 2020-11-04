@@ -1,6 +1,9 @@
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
 const openBtn = document.querySelector('.open-keyboard')
 const closeBtn = document.querySelector('.close-keyboard')
 const input = document.querySelector('.use-keyboard-input')
+const rec = new SpeechRecognition();
 
 const keyLayout = {
     eng:
@@ -9,7 +12,7 @@ const keyLayout = {
             "sound", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p","[", "]" , "\\",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "enter",
             "shift", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "lang",
-            "space", 'left', 'top', 'bottom', 'right'
+            "microphone", "space", 'left', 'top', 'bottom', 'right'
         ],
     engShift:
         [
@@ -17,7 +20,7 @@ const keyLayout = {
             "sound", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P","{", "}" , "|",
             "caps", "A", "S", "D", "F", "G", "H", "J", "K", "L", ":", '"', "enter",
             "shift", "Z", "X", "C", "V", "B", "N", "M", "<", ">", "?", "lang",
-            "space", 'left', 'top', 'bottom', 'right'
+            "microphone", "space", 'left', 'top', 'bottom', 'right'
         ],
     rus:
         [
@@ -25,7 +28,7 @@ const keyLayout = {
             "sound", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "\\",
             "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д","ж", "э", "enter",
             "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "lang",
-            "space", 'left', 'top', 'bottom', 'right'
+            "microphone", "space", 'left', 'top', 'bottom', 'right'
         ],
     rusShift:
         [
@@ -33,7 +36,7 @@ const keyLayout = {
             "sound", "Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х", "Ъ", "/",
             "caps", "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д","Ж", "Э", "enter",
             "shift", "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", ",", "lang",
-            "space", 'left', 'top', 'bottom', 'right'
+            "microphone", "space", 'left', 'top', 'bottom', 'right'
         ],
 };
 
@@ -54,6 +57,7 @@ const Keyboard = {
         // ru - true, eng - false
         lang: false,
         sound: true,
+        mic: false,
         capsLock: false,
         shift: false,
     },
@@ -73,15 +77,6 @@ const Keyboard = {
         // Add to DOM
         this.elements.main.appendChild(this.elements.keysContainer);
         document.body.appendChild(this.elements.main);
-
-        // Automatically use keyboard for elements with .use-keyboard-input
-        // document.querySelectorAll(".use-keyboard-input").forEach(element => {
-        //     element.addEventListener("focus", () => {
-        //         this.open(element.value, currentValue => {
-        //             element.value = currentValue;
-        //         });
-        //     });
-        // });
     },
 
     _createKeys() {
@@ -204,11 +199,27 @@ const Keyboard = {
                     audio.src = this.properties.lang ? './assets/sound/2_keys.mp3' : './assets/sound/6_keys.mp3'
                     audio.autoplay = this.properties.sound
 
-                    this._triggerSound("oninput");
+                    this._toggleSound();
                 });
 
+                    break;
 
-                break;
+                case 'microphone':
+                    keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
+                    keyElement.innerHTML = createIconHTML("mic");
+
+
+                    keyElement.addEventListener("click", () => {
+                        input.focus();
+                        this._toggleMic();
+                        keyElement.classList.toggle("keyboard__key--active", this.properties.mic);
+
+                        const audio = new Audio();
+                        audio.src = this.properties.lang ? './assets/sound/2_keys.mp3' : './assets/sound/6_keys.mp3'
+                        audio.autoplay = this.properties.sound;
+                    });
+
+                    break;
 
                 case "shift":
                     keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
@@ -450,7 +461,27 @@ const Keyboard = {
         }
     },
 
-    _triggerSound() {
+    _toggleMic() {
+        this.properties.mic = !this.properties.mic;
+        rec.continuous = true;
+        rec.lang = this.properties.lang ? "ru" : "en-GB";
+        let dop = input.value;
+        rec.addEventListener("result", (e) => {
+            let text = Array.from(e.results)
+                .map(result => result[0])
+                .map(result => result.transcript)
+                .join(' ');
+            this.properties.value = dop + text;
+            input.value = this.properties.value;
+        })
+        if (this.properties.mic) {
+            rec.start();
+        } else {
+            rec.stop();
+        }
+    },
+
+    _toggleSound() {
         this.properties.sound = !this.properties.sound;
     },
 
@@ -572,7 +603,6 @@ const Keyboard = {
     },
 
     open(initialValue, oninput, onclose) {
-        console.log(initialValue)
         this.properties.value = initialValue || "";
         this.eventHandlers.oninput = oninput;
         this.eventHandlers.onclose = onclose;
@@ -589,7 +619,6 @@ const Keyboard = {
 
 const keyBoardOpen = () => {
     const initialValue = input.value;
-    console.log(initialValue)
     input.focus();
     Keyboard.open(initialValue);
     openBtn.classList.add('hidden');
