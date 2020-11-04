@@ -49,7 +49,11 @@
 }
 
 .keyboard__key:active {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.keyboard__key__focus {
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .keyboard__key--wide {

@@ -100,13 +100,116 @@ const Keyboard = {
             }
         };
 
-        keyLayout[this.properties.lang ? 'rus' : 'eng'].forEach(key => {
+        keyLayout[this.properties.lang ? 'rus' : 'eng'].forEach((key, i) => {
             const keyElement = document.createElement("button");
-            const insertLineBreak = ["backspace", "\\", "enter", "ru", "en"].indexOf(key) !== -1;
+            const insertLineBreak = ["backspace", "\\", "enter", "lang"].indexOf(key) !== -1;
 
             // Add attributes/classes
             keyElement.setAttribute("type", "button");
             keyElement.classList.add("keyboard__key");
+            keyElement.classList.add(`${keyLayout.rus[i]}`)
+            keyElement.classList.add(`${keyLayout.eng[i]}`)
+            keyElement.classList.add(`${keyLayout.rusShift[i]}`)
+            keyElement.classList.add(`${keyLayout.engShift[i]}`)
+
+            // if (key === '`') keyElement.classList.add("dot");
+            // if (key === '-') keyElement.classList.add("comma");
+            // if (key === '=') keyElement.classList.add("dot");
+            // if (key === '[') keyElement.classList.add("comma");
+            // if (key === ']') keyElement.classList.add("comma");
+            // if (key === '\\') keyElement.classList.add("dot");
+            // if (key === ';') keyElement.classList.add("comma");
+            // if (key === "'") keyElement.classList.add("dot");
+            // if (key === ',') keyElement.classList.add("comma");
+            // if (key === '.') keyElement.classList.add("dot");
+            // if (key === '/') keyElement.classList.add("comma");
+            //
+            // if (key === '~') keyElement.classList.add("dot");
+            // if (key === '!') keyElement.classList.add("comma");
+            // if (key === '@') keyElement.classList.add("dot");
+            // if (key === '#') keyElement.classList.add("comma");
+            // if (key === '$') keyElement.classList.add("comma");
+            // if (key === '%') keyElement.classList.add("dot");
+            // if (key === '^') keyElement.classList.add("comma");
+            // if (key === "&") keyElement.classList.add("dot");
+            // if (key === '*') keyElement.classList.add("comma");
+            // if (key === '(') keyElement.classList.add("dot");
+            // if (key === ')') keyElement.classList.add("comma");
+            // if (key === '+') keyElement.classList.add("dot");
+            // if (key === '{') keyElement.classList.add("comma");
+            // if (key === '}') keyElement.classList.add("dot");
+            // if (key === '|') keyElement.classList.add("comma");
+            // if (key === ':') keyElement.classList.add("comma");
+            // if (key === '"') keyElement.classList.add("dot");
+            // if (key === '<') keyElement.classList.add("comma");
+            // if (key === ">") keyElement.classList.add("dot");
+            // if (key === '?') keyElement.classList.add("comma");
+            //
+            // if (key === '`') keyElement.classList.add("dot");
+            // if (key === '-') keyElement.classList.add("comma");
+            // if (key === '=') keyElement.classList.add("dot");
+            // if (key === '[') keyElement.classList.add("comma");
+            // if (key === ']') keyElement.classList.add("comma");
+            // if (key === '\\') keyElement.classList.add("dot");
+            // if (key === ';') keyElement.classList.add("comma");
+            // if (key === "'") keyElement.classList.add("dot");
+            // if (key === ',') keyElement.classList.add("comma");
+            // if (key === '.') keyElement.classList.add("dot");
+            // if (key === '/') keyElement.classList.add("comma");
+            //
+            // if (key === '~') keyElement.classList.add("dot");
+            // if (key === '!') keyElement.classList.add("comma");
+            // if (key === '@') keyElement.classList.add("dot");
+            // if (key === '#') keyElement.classList.add("comma");
+            // if (key === '$') keyElement.classList.add("comma");
+            // if (key === '%') keyElement.classList.add("dot");
+            // if (key === '^') keyElement.classList.add("comma");
+            // if (key === "&") keyElement.classList.add("dot");
+            // if (key === '*') keyElement.classList.add("comma");
+            // if (key === '(') keyElement.classList.add("dot");
+            // if (key === ')') keyElement.classList.add("comma");
+            // if (key === '+') keyElement.classList.add("dot");
+            // if (key === '{') keyElement.classList.add("comma");
+            // if (key === '}') keyElement.classList.add("dot");
+            // if (key === '|') keyElement.classList.add("comma");
+            // if (key === ':') keyElement.classList.add("comma");
+            // if (key === '"') keyElement.classList.add("dot");
+            // if (key === '<') keyElement.classList.add("comma");
+            // if (key === ">") keyElement.classList.add("dot");
+            // if (key === '?') keyElement.classList.add("comma");
+
+            if (key === 'caps') keyElement.classList.add("caps");
+            if (key === 'shift') keyElement.classList.add("shift");
+            if (key === 'space') keyElement.classList.add("space");
+            if (key === 'enter') keyElement.classList.add("enter");
+            if (key === 'backspace') keyElement.classList.add("backspace");
+            if (key === 'left') keyElement.classList.add("left");
+            if (key === 'top') keyElement.classList.add("top");
+            if (key === "bottom") keyElement.classList.add("bottom");
+            if (key === 'right') keyElement.classList.add("right");
+
+            if (key === '1') keyElement.classList.add("digit1");
+            if (key === '2') keyElement.classList.add("digit2");
+            if (key === '3') keyElement.classList.add("digit3");
+            if (key === '4') keyElement.classList.add("digit4");
+            if (key === '5') keyElement.classList.add("digit5");
+            if (key === '6') keyElement.classList.add("digit6");
+            if (key === '7') keyElement.classList.add("digit7");
+            if (key === "8") keyElement.classList.add("digit8");
+            if (key === '9') keyElement.classList.add("digit9");
+            if (key === '0') keyElement.classList.add("digit0");
+
+            if (key === '`') keyElement.classList.add("backquote");
+            if (key === '-') keyElement.classList.add("minus");
+            if (key === '=') keyElement.classList.add("equal");
+            if (key === '[') keyElement.classList.add("bracketLeft");
+            if (key === ']') keyElement.classList.add("bracketRight");
+            if (key === '\\') keyElement.classList.add("backslash");
+            if (key === ';') keyElement.classList.add("semicolon");
+            if (key === "'") keyElement.classList.add("quote");
+            if (key === ',') keyElement.classList.add("comma");
+            if (key === '.') keyElement.classList.add("period");
+            if (key === '/') keyElement.classList.add("slash");
 
             switch (key) {
                 case "backspace":
@@ -420,12 +523,21 @@ const Keyboard = {
         if (keyLang) {
             const btnLang = document.querySelector('.lang')
             btnLang.textContent = keyLang === "rus" ? "ru" : "eng";
+            this.properties.lang = keyLang === "rus";
             const caps = this.properties.capsLock;
             const shift = this.properties.shift;
             this.elements.keys.forEach((e, i) => {
                 if (keyLayout[keyLang][i].length <= 2) {
                     if (caps && !shift) {
                         e.textContent = keyLayout[keyLang][i].toUpperCase();
+                        return;
+                    }
+                    if (shift && !caps) {
+                        e.textContent = keyLayout[lang + 'Shift'][i].toUpperCase();
+                        return;
+                    }
+                    if (caps && shift) {
+                        e.textContent = keyLayout[lang + 'Shift'][i].toLowerCase();
                         return;
                     }
                     e.textContent = keyLayout[keyLang][i]
@@ -474,10 +586,6 @@ const Keyboard = {
     }
 };
 
-window.addEventListener("DOMContentLoaded", function () {
-    Keyboard.init();
-});
-
 const keyBoardOpen = () => {
     const initialValue = input.value;
     console.log(initialValue)
@@ -494,13 +602,378 @@ const keyBoardClose = () => {
 }
 
 const inputText = e => {
-    const value = e.target.value;
-    if (value[value.length - 1] !== undefined && value[value.length - 1].charCodeAt(0) > 200) Keyboard._toggleLang("rus")
-    if (value[value.length - 1].charCodeAt(0) < 200) Keyboard._toggleLang("eng")
+    const value = e.key;
+    if (
+        value[value.length - 1] !== undefined &&
+        value !== "Enter" &&
+        value !== "Shift" &&
+        value !== "CapsLock" &&
+        value !== "Control" &&
+        value !== "Tab" &&
+        value !== "Backspace" &&
+        value !== "Delete" &&
+        value !== "Alt" &&
+        value !== " " &&
+        value !== "ArrowUp" &&
+        value !== "ArrowRight" &&
+        value !== "ArrowLeft" &&
+        value !== "ArrowDown" &&
+        value[value.length - 1].charCodeAt(0) >= 1072 &&
+        value[value.length - 1].charCodeAt(0) <= 1103) Keyboard._toggleLang("rus")
+    if (
+        value[value.length - 1] !== undefined &&
+        value !== "Enter" &&
+        value !== "Shift" &&
+        value !== "CapsLock" &&
+        value !== "Control" &&
+        value !== "Tab" &&
+        value !== "Backspace" &&
+        value !== "Delete" &&
+        value !== "Alt" &&
+        value !== " " &&
+        value !== "ArrowUp" &&
+        value !== "ArrowRight" &&
+        value !== "ArrowLeft" &&
+        value !== "ArrowDown" &&
+        value[value.length - 1].charCodeAt(0) <= 122 &&
+        value[value.length - 1].charCodeAt(0) >= 97) Keyboard._toggleLang("eng")
     Keyboard.properties.value = input.value;
 }
 
+let pressed = true;
+
+const backlightKeyboard = e => {
+    const key = e.key;
+    // service keys
+    if (Keyboard.properties.lang) {
+        if (key === '4' || key === ";") {
+            document.querySelector('.digit4').classList.add("keyboard__key__focus");
+            return;
+        }
+        if (key === '6' || key === ":") {
+            document.querySelector('.digit6').classList.add("keyboard__key__focus");
+            return;
+        }
+        if (key === '7' || key === "?") {
+            document.querySelector('.digit7').classList.add("keyboard__key__focus");
+            return;
+        }
+        if (key === ';' || key === ':') {
+            document.querySelector('.semicolon').classList.add("keyboard__key__focus");
+            return;
+        }
+        if (key === "'" || key === '"') {
+            document.querySelector('.digit2').classList.add("keyboard__key__focus");
+            return;
+        }
+        if (key === "/") {
+            document.querySelector('.backslash').classList.add("keyboard__key__focus");
+            return;
+        }
+        if (key === '.' || key === ',') {
+            document.querySelector('.slash').classList.add("keyboard__key__focus");
+            return;
+        }
+    }
+    if (key === 'CapsLock') {
+        document.querySelector('.caps').classList.toggle("keyboard__key__focus",  !Keyboard.properties.capsLock);
+        Keyboard._toggleCapsLock();
+        console.log(Keyboard.properties)
+        document.querySelector('.caps').classList.toggle("keyboard__key--active", Keyboard.properties.capsLock);
+        return;
+    }
+    if (key === 'Shift') {
+        if (pressed) {
+            pressed = false;
+            document.querySelector('.shift').classList.add("keyboard__key__focus");
+            Keyboard._toggleShift();
+            document.querySelector('.shift').classList.toggle("keyboard__key--active", Keyboard.properties.shift);
+            return;
+        }
+        return;
+    }
+    if (key === ' ') {
+        document.querySelector('.space').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === 'Enter') {
+        document.querySelector('.enter').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === 'Backspace') {
+        document.querySelector('.backspace').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === 'ArrowLeft') {
+        document.querySelector('.left').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === 'ArrowUp') {
+        document.querySelector('.top').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === "ArrowDown") {
+        document.querySelector('.bottom').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === 'ArrowRight') {
+        document.querySelector('.right').classList.add("keyboard__key__focus");
+        return;
+    }
+    // numbers
+    if (key === '1' || key === "!") {
+        document.querySelector('.digit1').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '2' || key === "@") {
+        document.querySelector('.digit2').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '3' || key === "#") {
+        document.querySelector('.digit3').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '4' || key === "$") {
+        document.querySelector('.digit4').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '5' || key === "%") {
+        document.querySelector('.digit5').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '6' || key === "^") {
+        document.querySelector('.digit6').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '7' || key === "&") {
+        document.querySelector('.digit7').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === "8" || key === "*") {
+        document.querySelector('.digit8').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '9' || key === "(") {
+        document.querySelector('.digit9').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '0' || key === ")") {
+        document.querySelector('.digit0').classList.add("keyboard__key__focus");
+        return;
+    }
+    //special symbols
+    if (key === '`' || key === '~') {
+        document.querySelector('.backquote').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '-' || key === '_') {
+        document.querySelector('.minus').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '=' || key === '+') {
+        document.querySelector('.equal').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '[' || key === '{') {
+        document.querySelector('.bracketLeft').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === ']' || key === '}') {
+        document.querySelector('.bracketRight').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '\\' || key === '|') {
+        document.querySelector('.backslash').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === ';' || key === ':') {
+        document.querySelector('.semicolon').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === "'" || key === '"') {
+        document.querySelector('.quote').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === ',' || key === '<') {
+        document.querySelector('.comma').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '.' || key === '>') {
+        document.querySelector('.period').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (key === '/' || key === '?') {
+        document.querySelector('.slash').classList.add("keyboard__key__focus");
+        return;
+    }
+    if (document.querySelector(`.${key}`)) {
+        document.querySelector(`.${key}`).classList.add("keyboard__key__focus")
+    }
+}
+
+const removeBacklightKeyboard = e =>{
+    const key = e.key
+    // service keys
+    if (Keyboard.properties.lang) {
+        if (key === ";") {
+            document.querySelector('.digit4').classList.remove("keyboard__key__focus");
+            return;
+        }
+        if (key === ":") {
+            document.querySelector('.digit6').classList.remove("keyboard__key__focus");
+            return;
+        }
+        if (key === "?") {
+            document.querySelector('.digit7').classList.remove("keyboard__key__focus");
+            return;
+        }
+        if (key === '.' || key === ',') {
+            document.querySelector('.slash').classList.remove("keyboard__key__focus");
+            return;
+        }
+        if (key === "'" || key === '"') {
+            document.querySelector('.digit2').classList.remove("keyboard__key__focus");
+            return;
+        }
+        if (key === "/") {
+            document.querySelector('.backslash').classList.remove("keyboard__key__focus");
+            return;
+        }
+    }
+    if (key === 'Shift') {
+        pressed = true;
+        document.querySelector('.shift').classList.remove("keyboard__key__focus");
+        Keyboard._toggleShift();
+        document.querySelector('.shift').classList.toggle("keyboard__key--active", Keyboard.properties.shift);
+        return;
+    }
+    if (key === ' ') {
+        document.querySelector('.space').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === 'Enter') {
+        document.querySelector('.enter').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === 'Backspace') {
+        document.querySelector('.backspace').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === 'ArrowLeft') {
+        document.querySelector('.left').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === 'ArrowUp') {
+        document.querySelector('.top').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === "ArrowDown") {
+        document.querySelector('.bottom').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === 'ArrowRight') {
+        document.querySelector('.right').classList.remove("keyboard__key__focus");
+        return;
+    }
+    // numbers
+    if (key === '1' || key === "!") {
+        document.querySelector('.digit1').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '2' || key === "@") {
+        document.querySelector('.digit2').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '3' || key === "#") {
+        document.querySelector('.digit3').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '4' || key === "$") {
+        document.querySelector('.digit4').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '5' || key === "%") {
+        document.querySelector('.digit5').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '6' || key === "^") {
+        document.querySelector('.digit6').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '7' || key === "&") {
+        document.querySelector('.digit7').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === "8" || key === "*") {
+        document.querySelector('.digit8').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '9' || key === "(") {
+        document.querySelector('.digit9').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '0' || key === ")") {
+        document.querySelector('.digit0').classList.remove("keyboard__key__focus");
+        return;
+    }
+
+    //special symbols
+    if (key === '`' || key === '~') {
+        document.querySelector('.backquote').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '-' || key === '_') {
+        document.querySelector('.minus').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '=' || key === '+') {
+        document.querySelector('.equal').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '[' || key === '{') {
+        document.querySelector('.bracketLeft').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === ']' || key === '}') {
+        document.querySelector('.bracketRight').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '\\' || key === '|') {
+        document.querySelector('.backslash').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === ';' || key === ':') {
+        document.querySelector('.semicolon').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === "'" || key === '"') {
+        document.querySelector('.quote').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === ',' || key === '<') {
+        document.querySelector('.comma').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '.' || key === '>') {
+        document.querySelector('.period').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (key === '/' || key === '?') {
+        document.querySelector('.slash').classList.remove("keyboard__key__focus");
+        return;
+    }
+    if (document.querySelector(`.${key}`)) {
+        document.querySelector(`.${key}`).classList.remove("keyboard__key__focus")
+    }
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+    Keyboard.init();
+});
+
+window.addEventListener('keydown', backlightKeyboard)
+window.addEventListener('keyup', removeBacklightKeyboard)
 openBtn.addEventListener('click', keyBoardOpen);
 closeBtn.addEventListener('click', keyBoardClose);
 // input.addEventListener('keydown', inputText);
-input.addEventListener('keyup', inputText);
+window.addEventListener('keyup', inputText);
