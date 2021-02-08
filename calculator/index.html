@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="index.css">
+<!--    Я черпал вдохновение из дизайна калькулятора google -->
+</head>
+<body>
+<div style="display: flex; justify-content: center; margin-top: 20px">
+    <p>Если есть вопросы пиши в <a target="_blank" href="https://t.me/Anton1310">телегу</a></p>
+</div>
+    <article class="container">
+        <section class="display">
+            <div class="display--current current"></div>
+        </section>
+        <section class="btn--container">
+
+            <button class="btn__item btn__item--action action" value="√">√x</button>
+            <button class="btn__item btn__item--action action" value="^">x^</button>
+            <button class="btn__item btn__item--action ans" value="C">C</button>
+            <button class="btn__item btn__item--action delete" value="CE">CE</button>
+
+            <button class="btn__item btn__item--number" value="7">7</button>
+            <button class="btn__item btn__item--number" value="8">8</button>
+            <button class="btn__item btn__item--number" value="9">9</button>
+            <button class="btn__item btn__item--action action" value="/">&divide;</button>
+
+            <button class="btn__item btn__item--number" value="4">4</button>
+            <button class="btn__item btn__item--number" value="5">5</button>
+            <button class="btn__item btn__item--number" value="6">6</button>
+            <button class="btn__item btn__item--action action" value="×">×</button>
+
+            <button class="btn__item btn__item--number" value="1">1</button>
+            <button class="btn__item btn__item--number" value="2">2</button>
+            <button class="btn__item btn__item--number" value="3">3</button>
+            <button class="btn__item btn__item--action action" value="-">-</button>
+
+            <button class="btn__item btn__item--number" value="0">0</button>
+            <button class="btn__item btn__item--number" value=".">.</button>
+            <button class="btn__item btn__item--result" value="=">=</button>
+            <button class="btn__item btn__item--action action" value="+">+</button>
+        </section>
+    </article>
+<script src="main.js"></script>
+</body>
+</html>
