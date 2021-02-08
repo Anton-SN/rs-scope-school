@@ -1,0 +1,530 @@
+/* Fonts */
+@font-face {
+    font-family: "Roboto Light";
+    src: url("assets/fonts/Roboto-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Roboto Medium";
+    src: url("assets/fonts/Roboto-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Roboto Bold";
+    src: url("assets/fonts/Roboto-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+}
+
+/* Global styles */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto Regular";
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 64px;
+    letter-spacing: 4.5px;
+    font-family: "Roboto Bold";
+}
+
+h2 {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 1px;
+    font-family: "Roboto Bold";
+}
+
+h3 {
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 2.45px;
+}
+body {
+    background: #0e0e0e;
+}
+
+article {
+    width: 1600px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.button {
+    border: 0;
+    outline: none;
+    background: #00AFDB;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Roboto Bold";
+    transition: background-color 0.5s linear;
+}
+
+.button:hover {
+    background: #009CC2;
+    cursor: pointer;
+}
+
+.button--main {
+    width: 184px;
+    height: 46px;
+}
+
+.buttonStore {
+    width: 187px;
+    height: 46px;
+    display: flex;
+
+}
+
+.buttonStore__text {
+    width: 127px;
+    padding: 15px 0;
+    font-size: 14px;
+    color: white;
+    font-family: "Roboto Bold";
+    text-align: center;
+}
+
+.buttonStore__iconWrap {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 12px;
+    background: #009CC2;
+    width: 59px;
+    height: 100%;
+    margin-right: 0;
+}
+
+.buttonStore__iconWrap img {
+    height: 20px;
+}
+
+/* main styles */
+
+.main {
+    height: 744px;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.main__wrap {
+    position: absolute;
+    height: 744px;
+    background: black;
+}
+
+.wrap__image {
+    transform: scale(0.94) translateY(-23px) translateX(2px);
+
+}
+
+.main__header, .main__title {
+    z-index: 1000;
+}
+
+.header {
+    height: 95px;
+}
+
+.navbar {
+    height: 100%;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-family: "Roboto Light";
+    letter-spacing: .1px;
+    font-size: 14px;
+}
+
+.menu__items {
+    margin: auto 0;
+}
+
+.menu__item {
+    opacity: 0.8;
+}
+
+.menu__item:hover {
+    border-bottom: 1px solid white;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.menu__item:nth-child(3):hover {
+    border-bottom: none;
+}
+
+.menu__item--active {
+    border-bottom: 1px solid white;
+    opacity: 1;
+}
+
+.menu__item:first-child {
+    margin-top: 4px;
+    margin-left: 502px;
+    margin-right: 85px;
+}
+
+.menu__item:nth-child(3) {
+    margin: 25px 100px;
+    width: 44px;
+    height: 45px;
+    opacity: 1;
+}
+
+
+.menu__item:last-child {
+    margin-left: 85px;
+    margin-right: 515px;
+}
+
+.main__title {
+    margin-top: 134px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slogan__motto {
+    margin-left: 435px;
+    margin-right: auto;
+}
+
+.slogan__title {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.title {
+    font-family: "Roboto Light";
+    letter-spacing: .11px;
+    font-size: 18px;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+.slogan__button {
+    margin-top: 28px;
+}
+
+.slogan__button a {
+    font-family: "Roboto Bold";
+}
+
+.slogan__social {
+    width: 100%;
+    margin-top: 183px;
+}
+
+.social__group {
+    display: flex;
+    justify-content: center;
+}
+
+.social__item {
+    margin: 0 15px;
+}
+
+.social__item:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    filter: blur(.4px);
+}
+
+.unit_2 {
+    height: 842px;
+    display: flex;
+    background: white;
+}
+
+.rappresent {
+    margin-left: 268px;
+    margin-right: 248px;
+    width: 407px;
+}
+
+.rappresent__slogan {
+    margin-top: 295px;
+    width: 370px;
+}
+
+.rappresent__title {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #4E4E4E
+}
+
+.rappresent__button {
+    margin-top: 30px;
+    width: 184px;
+    height: 46px;
+    margin-left: 1px;
+}
+
+.rappresent__button a {
+    font-family: "Roboto Bold";
+}
+
+.unit_2__wrap {
+    margin-top: 120px;
+    margin-bottom: 140px;
+    margin-right: 270px;
+}
+
+
+.unit_3 {
+    height: 504px;
+    display: flex;
+    background: #F5F6F7;
+}
+
+.community {
+    width: 298px;
+    margin: 155px 139px 174px 269px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.community__slogan {
+    margin-top: 15px;
+}
+
+.community__title {
+    width: 298px;
+    margin-top: 11px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: #4E4E4E;
+    text-align: center;
+}
+
+.unit_3__fotos {
+    margin-top: 81px;
+}
+
+.fotos__switch {
+    margin-left: 543px;
+    font-size: 18px;
+}
+
+.arrow:hover {
+    opacity: .5;
+    cursor: pointer
+}
+
+.arrow--left { margin-right: 9px; }
+.arrow--right { margin-left: 8px; }
+
+.fotos__container {
+    width: 894px;
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.fotos__items:nth-child(2) {
+    margin: 0 30px;
+}
+
+.unit_4 {
+    padding-left: 269px;
+    height: 842px;
+    display: flex;
+    background: white;
+}
+
+.unit_4__wrap {
+    margin-top: 120px;
+    margin-bottom: 140px;
+}
+
+.implement {
+    margin-left: 139px;
+    margin-top: 319px;
+    width: 407px;
+}
+
+.implement__slogan {
+    width: 370px;
+}
+
+.implement__title {
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.45;
+    letter-spacing: 0.09px;
+    color: #4E4E4E
+}
+
+.implement__button {
+    margin-top: 30px;
+    width: 180px;
+    height: 46px;
+}
+
+.unit_5 {
+    height: 524px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:
+            url("assets/images/pexels-christina-morillo-1181675 1.png");
+}
+
+.form__slogan {
+    margin-top: 200px;
+    color: white;
+}
+
+.form__field {
+    margin-top: 29px;
+    height: 46px;
+    display: flex;
+}
+
+.field__input {
+    width: 340px;
+    height: 100%;
+    box-sizing: border-box;
+    padding-left: 24px;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    outline: none;
+    letter-spacing: .5px;
+}
+
+.field__button {
+    width: 66px;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: #00AFDB;
+}
+
+.unit_6 {
+    height: 464px;
+}
+
+.download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F5F6F7;
+}
+
+.download__slogan {
+    margin-top: 120px;
+}
+
+.download__title {
+    margin-top: 20px;
+    width: 480px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+.download__apps {
+    margin-top: 30px;
+}
+
+.download__apps {
+    display: flex;
+}
+
+.download__button--right {
+    margin-right: 30px;
+}
+
+.unit_7 {
+    height: 185px;
+}
+
+.footer {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0 80px 0;
+    color: white;
+    white-space: nowrap;
+    background: #000000;
+}
+
+.footer__menu {
+    display: flex;
+    margin-left: 160px;
+    margin-right: 363px;
+    margin-top: 13px;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.footerLink__item {
+    margin-right: 19px;
+}
+
+.lineMargin {
+    margin-right: 17px;
+}
+
+.footer__wrap {
+}
+
+.footer__author {
+    margin-right: 160px;
+    margin-left: 448px;
+    margin-top: 13px;
+    font-size: 14px;
+    color: #818181;
+    line-height: 1.4;
+}
+
+.footer li svg {
+    color: #4E4E4E;
+}
+
+.footerLink__item:hover,
+.footer__wrap:hover {
+    cursor: pointer;
+}
