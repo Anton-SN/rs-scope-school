@@ -9,6 +9,12 @@ body {
 a { text-decoration: none }
 li { list-style: none }
 
+::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+    background: transparent;
+}
+
 button {
     height: 52px;
     border-radius: 100px;
