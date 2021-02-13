@@ -51,11 +51,12 @@ const imagesArr = (arr) => {
 const pictures = imagesArr(arr);
 
 async function getQuote() {
-    const url = `https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en`;
+    const url = `https://favqs.com/api/qotd`;
     const res = await fetch(url);
     const data = await res.json();
-    blockquote.textContent = data.quoteText;
-    figcaption.textContent = data.quoteAuthor;
+    const { quote: { author = '', body = ''}} = data;
+    blockquote.textContent = body;
+    figcaption.textContent = author;
 }
 
 async function showTime() {
@@ -178,7 +179,6 @@ focus.addEventListener('click', focusFocus)
 focus.addEventListener('blur', getFocus)
 
 document.addEventListener('DOMContentLoaded', getQuote);
-btn.addEventListener('click', getQuote);
 
 city.addEventListener('keypress', setCity);
 city.addEventListener('click', focusCity)
